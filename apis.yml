@@ -1,0 +1,240 @@
+aid: planet-labs
+name: Planet Labs
+description: >-
+  Planet Labs operates the world's largest commercial Earth observation
+  constellation, imaging the entire landmass of the planet daily with its
+  PlanetScope satellites and capturing high-resolution targeted imagery with
+  SkySat and Pelican. The Planet Insights Platform is API-first: developers
+  search the archive through the Data and Catalog APIs, order processed
+  bundles through the Orders API, set up standing area-of-interest deliveries
+  through the Subscriptions API, request tip-and-cue collections through the
+  Tasking API, and consume mosaics through the Basemaps and Tiles APIs.
+  Analytics, Processing, Statistical, and Batch APIs run server-side workflows
+  over the catalog and over Planetary Variables. All APIs sit under
+  api.planet.com, authenticate with an API key over HTTP Basic, and are wrapped
+  by the official Planet Python SDK.
+type: Index
+position: Provider
+access: 3rd-Party
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - Earth Observation
+  - Satellite Imagery
+  - Geospatial
+  - PlanetScope
+  - SkySat
+  - Pelican
+  - Tasking
+  - Basemaps
+  - Analytics
+  - Subscriptions
+  - STAC
+  - GIS
+url: https://raw.githubusercontent.com/api-evangelist/planet-labs/refs/heads/main/apis.yml
+created: '2026-05-23'
+modified: '2026-05-23'
+specificationVersion: '0.20'
+apis:
+  - aid: planet-labs:data
+    name: Planet Data API
+    description: >-
+      Programmatic search over Planet's imagery catalog by AOI, time window,
+      cloud cover, item type, and asset type. Returns item and asset metadata
+      for downstream activation and download.
+    humanURL: https://docs.planet.com/develop/apis/data/
+    baseURL: https://api.planet.com/data/v1
+    tags:
+      - Search
+      - Catalog
+      - Imagery
+    properties:
+      - type: Documentation
+        url: https://docs.planet.com/develop/apis/data/
+  - aid: planet-labs:catalog
+    name: Planet Catalog API
+    description: >-
+      STAC-based search and access layer over Planet imagery metadata,
+      providing a standards-aligned interface to the archive.
+    humanURL: https://docs.planet.com/develop/apis/
+    baseURL: https://api.planet.com
+    tags:
+      - STAC
+      - Catalog
+      - Metadata
+    properties:
+      - type: Documentation
+        url: https://docs.planet.com/develop/apis/
+  - aid: planet-labs:orders
+    name: Planet Orders API
+    description: >-
+      Request preparation and delivery of imagery bundles with optional
+      processing operations (clip, composite, harmonize, reproject, band math,
+      file format), and deliver to cloud destinations (S3, GCS, Azure) or
+      direct download URLs.
+    humanURL: https://docs.planet.com/develop/apis/orders/
+    baseURL: https://api.planet.com/compute/ops
+    tags:
+      - Orders
+      - Delivery
+      - Processing
+    properties:
+      - type: Documentation
+        url: https://docs.planet.com/develop/apis/orders/
+  - aid: planet-labs:subscriptions
+    name: Planet Subscriptions API
+    description: >-
+      Standing subscriptions that deliver new imagery and analytic feeds to a
+      cloud destination automatically as new acquisitions clear the AOI and
+      cloud-cover filter.
+    humanURL: https://docs.planet.com/develop/apis/subscriptions/
+    baseURL: https://api.planet.com/subscriptions/v1
+    tags:
+      - Subscriptions
+      - Streaming
+      - Cloud Delivery
+    properties:
+      - type: Documentation
+        url: https://docs.planet.com/develop/apis/subscriptions/
+  - aid: planet-labs:basemaps
+    name: Planet Basemaps API
+    description: >-
+      Discover, view, and download Planet's PlanetScope monitoring and visual
+      basemap mosaics covering the global landmass at regular cadence.
+    humanURL: https://docs.planet.com/develop/apis/basemaps/
+    baseURL: https://api.planet.com/basemaps/v1
+    tags:
+      - Basemaps
+      - Mosaics
+      - Imagery
+    properties:
+      - type: Documentation
+        url: https://docs.planet.com/develop/apis/basemaps/
+  - aid: planet-labs:tasking
+    name: Planet Tasking API
+    description: >-
+      Tasking interface for SkySat and Pelican constellations. Submit
+      collection requests against a target geometry and time window and track
+      capture and delivery status.
+    humanURL: https://docs.planet.com/develop/apis/tasking/
+    baseURL: https://api.planet.com/tasking/v2
+    tags:
+      - Tasking
+      - SkySat
+      - Pelican
+      - Tip and Cue
+    properties:
+      - type: Documentation
+        url: https://docs.planet.com/develop/apis/tasking/
+  - aid: planet-labs:analytics
+    name: Planet Analytics API
+    description: >-
+      Access to Planet Analytics Feeds, including building, road, ship, and
+      change detection outputs derived from the imagery archive.
+    humanURL: https://docs.planet.com/develop/apis/analytics/
+    baseURL: https://api.planet.com/analytics
+    tags:
+      - Analytics
+      - Detection
+      - Change
+      - ML
+    properties:
+      - type: Documentation
+        url: https://docs.planet.com/develop/apis/analytics/
+  - aid: planet-labs:processing
+    name: Planet Processing API
+    description: >-
+      Run custom processing scripts on raw bands and derive indices (NDVI,
+      EVI, etc.) over Planet imagery without downloading source data.
+    humanURL: https://docs.planet.com/develop/apis/
+    baseURL: https://api.planet.com
+    tags:
+      - Processing
+      - Indices
+      - NDVI
+    properties:
+      - type: Documentation
+        url: https://docs.planet.com/develop/apis/
+  - aid: planet-labs:statistical
+    name: Planet Statistical API
+    description: >-
+      Compute per-AOI statistics (mean, median, percentiles, histograms) over
+      imagery and analytic layers without requiring full raster downloads.
+    humanURL: https://docs.planet.com/develop/apis/
+    baseURL: https://api.planet.com
+    tags:
+      - Statistics
+      - Zonal Stats
+      - Analytics
+    properties:
+      - type: Documentation
+        url: https://docs.planet.com/develop/apis/
+  - aid: planet-labs:tiles
+    name: Planet Tiles API
+    description: >-
+      XYZ and WMTS tile services for visualizing PlanetScope and SkySat scenes
+      and basemaps in web mapping clients.
+    humanURL: https://docs.planet.com/develop/apis/
+    baseURL: https://tiles.planet.com
+    tags:
+      - Tiles
+      - XYZ
+      - WMTS
+      - Visualization
+    properties:
+      - type: Documentation
+        url: https://docs.planet.com/develop/apis/
+  - aid: planet-labs:features
+    name: Planet Features API
+    description: >-
+      Save and manage Areas of Interest (features and feature collections) for
+      reuse across Subscriptions, Orders, and Tasking.
+    humanURL: https://docs.planet.com/develop/apis/
+    baseURL: https://api.planet.com/features/v1
+    tags:
+      - Features
+      - AOI
+      - GeoJSON
+    properties:
+      - type: Documentation
+        url: https://docs.planet.com/develop/apis/
+  - aid: planet-labs:python-sdk
+    name: Planet Python SDK
+    description: >-
+      Official Python SDK (planet on PyPI) and CLI for working with all Planet
+      APIs, including async clients for search, orders, subscriptions, and
+      data activation.
+    humanURL: https://github.com/planetlabs/planet-client-python
+    baseURL: https://github.com/planetlabs/planet-client-python
+    tags:
+      - SDK
+      - Python
+      - CLI
+    properties:
+      - type: Repository
+        url: https://github.com/planetlabs/planet-client-python
+common:
+  - type: Website
+    url: https://www.planet.com/
+  - type: Developers
+    url: https://www.planet.com/markets/developers/
+  - type: Documentation
+    url: https://docs.planet.com/
+  - type: APIReference
+    url: https://docs.planet.com/develop/apis/
+  - type: InsightsPlatform
+    url: https://www.planet.com/products/planet-insights-platform/
+  - type: GitHubOrganization
+    url: https://github.com/planetlabs
+  - type: Blog
+    url: https://www.planet.com/pulse/
+  - type: Pricing
+    url: https://www.planet.com/pricing/
+  - type: Status
+    url: https://status.planet.com/
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/planet-labs/
+  - type: X
+    url: https://x.com/planet
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
