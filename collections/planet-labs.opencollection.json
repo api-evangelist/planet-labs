@@ -1,0 +1,620 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Planet Insights Platform API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Data - Item Types",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all asset types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.planet.com/data/v1/asset-types"
+          },
+          "docs": "List all asset types"
+        },
+        {
+          "info": {
+            "name": "Get an asset type",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.planet.com/data/v1/asset-types/:asset_type_id",
+            "params": [
+              {
+                "name": "asset_type_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get an asset type"
+        },
+        {
+          "info": {
+            "name": "List all item types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.planet.com/data/v1/item-types"
+          },
+          "docs": "List all item types"
+        },
+        {
+          "info": {
+            "name": "Get an item type",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.planet.com/data/v1/item-types/:item_type_id",
+            "params": [
+              {
+                "name": "item_type_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get an item type"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Data - Items",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get item by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.planet.com/data/v1/item-types/:item_type_id/items/:item_id",
+            "params": [
+              {
+                "name": "item_type_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "item_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get item by ID"
+        },
+        {
+          "info": {
+            "name": "List assets for an item",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.planet.com/data/v1/item-types/:item_type_id/items/:item_id/assets",
+            "params": [
+              {
+                "name": "item_type_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "item_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List assets for an item"
+        },
+        {
+          "info": {
+            "name": "Cloud coverage estimate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.planet.com/data/v1/item-types/:item_type_id/items/:item_id/coverage",
+            "params": [
+              {
+                "name": "item_type_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "item_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Cloud coverage estimate"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Data - Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Execute a structured search",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.planet.com/data/v1/quick-search",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Execute a structured search"
+        },
+        {
+          "info": {
+            "name": "List saved searches",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.planet.com/data/v1/searches"
+          },
+          "docs": "List saved searches"
+        },
+        {
+          "info": {
+            "name": "Create a saved search",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.planet.com/data/v1/searches",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a saved search"
+        },
+        {
+          "info": {
+            "name": "Get saved search details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.planet.com/data/v1/searches/:search_id",
+            "params": [
+              {
+                "name": "search_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get saved search details"
+        },
+        {
+          "info": {
+            "name": "Update saved search",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.planet.com/data/v1/searches/:search_id",
+            "params": [
+              {
+                "name": "search_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update saved search"
+        },
+        {
+          "info": {
+            "name": "Delete saved search",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.planet.com/data/v1/searches/:search_id",
+            "params": [
+              {
+                "name": "search_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete saved search"
+        },
+        {
+          "info": {
+            "name": "Run a saved search",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.planet.com/data/v1/searches/:search_id/results",
+            "params": [
+              {
+                "name": "search_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Run a saved search"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Data - Stats",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search stats with date histogram",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.planet.com/data/v1/stats",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Search stats with date histogram"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Orders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.planet.com/compute/ops/orders/v2"
+          },
+          "docs": "List orders"
+        },
+        {
+          "info": {
+            "name": "Create order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.planet.com/compute/ops/orders/v2",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create order"
+        },
+        {
+          "info": {
+            "name": "Get order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.planet.com/compute/ops/orders/v2/:order_id",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get order"
+        },
+        {
+          "info": {
+            "name": "Cancel an order",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.planet.com/compute/ops/orders/v2/:order_id",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Cancel an order"
+        },
+        {
+          "info": {
+            "name": "Cancel orders in bulk",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.planet.com/compute/ops/bulk/orders/v2/cancel",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Cancel orders in bulk"
+        },
+        {
+          "info": {
+            "name": "Aggregated order stats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.planet.com/compute/ops/stats/orders/v2"
+          },
+          "docs": "Aggregated order stats"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Subscriptions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.planet.com/subscriptions/v1"
+          },
+          "docs": "List subscriptions"
+        },
+        {
+          "info": {
+            "name": "Create a subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.planet.com/subscriptions/v1",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a subscription"
+        },
+        {
+          "info": {
+            "name": "Create multiple subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.planet.com/subscriptions/v1/bulk",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create multiple subscriptions"
+        },
+        {
+          "info": {
+            "name": "Summary of all subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.planet.com/subscriptions/v1/summary"
+          },
+          "docs": "Summary of all subscriptions"
+        },
+        {
+          "info": {
+            "name": "Get a subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.planet.com/subscriptions/v1/:subscriptionId",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a subscription"
+        },
+        {
+          "info": {
+            "name": "Update a subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.planet.com/subscriptions/v1/:subscriptionId",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a subscription"
+        },
+        {
+          "info": {
+            "name": "Patch a subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.planet.com/subscriptions/v1/:subscriptionId",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Patch a subscription"
+        },
+        {
+          "info": {
+            "name": "Cancel a subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.planet.com/subscriptions/v1/:subscriptionId/cancel",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Cancel a subscription"
+        },
+        {
+          "info": {
+            "name": "Suspend a subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.planet.com/subscriptions/v1/:subscriptionId/suspend",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Suspend a subscription"
+        },
+        {
+          "info": {
+            "name": "Reactivate a subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.planet.com/subscriptions/v1/:subscriptionId/reactivate",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Reactivate a subscription"
+        },
+        {
+          "info": {
+            "name": "Get subscription results",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.planet.com/subscriptions/v1/:subscriptionId/results",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get subscription results"
+        },
+        {
+          "info": {
+            "name": "Get subscription results summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.planet.com/subscriptions/v1/:subscriptionId/summary",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get subscription results summary"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
