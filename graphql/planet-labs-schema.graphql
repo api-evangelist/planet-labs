@@ -1,0 +1,1046 @@
+"""
+Planet Labs GraphQL Schema
+Derived from the Planet Insights Platform REST APIs covering scene discovery,
+basemap access, analytics feeds, subscription management, orders, data delivery,
+and geospatial analytics.
+"""
+
+# -------------------------
+# Scalars
+# -------------------------
+
+scalar DateTime
+scalar JSON
+scalar GeoJSON
+scalar Float64
+scalar URL
+
+# -------------------------
+# Enums
+# -------------------------
+
+enum ItemType {
+  PLANET_SCOPE_3P
+  PLANET_SCOPE_8B
+  SKY_SAT_COLLECT
+  SKY_SAT_VIDEO
+  PELICAN_SCENE
+  LANDSAT_8L1TP
+  SENTINEL2L1C
+  MOD09GQ
+}
+
+enum AssetType {
+  ANALYTIC
+  ANALYTIC_SR
+  ANALYTIC_8B
+  ANALYTIC_8B_SR
+  BASIC_ANALYTIC
+  BASIC_UDM2
+  ORTHO_ANALYTIC
+  ORTHO_VISUAL
+  PANSHARPENED
+  VISUAL
+  UDM
+  UDM2
+}
+
+enum AssetStatus {
+  INACTIVE
+  ACTIVATING
+  ACTIVE
+}
+
+enum OrderStatus {
+  QUEUED
+  RUNNING
+  SUCCESS
+  FAILED
+  PARTIAL
+  CANCELLED
+}
+
+enum SubscriptionStatus {
+  RUNNING
+  PAUSED
+  COMPLETED
+  FAILED
+  CANCELLED
+  PENDING
+}
+
+enum TaskingStatus {
+  PENDING
+  CONFIRMED
+  COLLECTING
+  COMPLETED
+  FAILED
+  CANCELLED
+  EXPIRED
+}
+
+enum AnalyticFeedType {
+  BUILDING_PRESENCE
+  ROAD_PRESENCE
+  SHIP_PRESENCE
+  AIRCRAFT_PRESENCE
+  CHANGE_DETECTION
+  CROP_CLASSIFICATION
+  FIELD_BOUNDARIES
+  WATER_EXTENT
+  BURN_SCAR
+}
+
+enum DeliveryType {
+  S3
+  GCS
+  AZURE
+  DIRECT_DOWNLOAD
+}
+
+enum ProcessingOperation {
+  CLIP
+  COMPOSITE
+  HARMONIZE
+  REPROJECT
+  BAND_MATH
+  CONVERT_FORMAT
+  TILE_SPLIT
+  COREGISTER
+  TOAR
+  NDVI
+  EVI
+  NDWI
+  SAVI
+}
+
+enum OrderToolType {
+  CLIP
+  REPROJECT
+  TOAR
+  BANDMATH
+  FILE_FORMAT
+  COMPOSITE
+}
+
+enum BasemapCadence {
+  DAILY
+  WEEKLY
+  MONTHLY
+  QUARTERLY
+  ANNUAL
+}
+
+enum SortOrder {
+  ASC
+  DESC
+}
+
+enum GeometryType {
+  POINT
+  MULTIPOINT
+  LINESTRING
+  MULTILINESTRING
+  POLYGON
+  MULTIPOLYGON
+  GEOMETRY_COLLECTION
+}
+
+enum SatelliteConstellation {
+  PLANET_SCOPE
+  SKY_SAT
+  PELICAN
+}
+
+enum FeatureType {
+  FEATURE
+  FEATURE_COLLECTION
+}
+
+enum StatisticFunction {
+  MEAN
+  MEDIAN
+  MIN
+  MAX
+  STDDEV
+  PERCENTILE_25
+  PERCENTILE_75
+  PERCENTILE_90
+  COUNT
+  SUM
+}
+
+enum NotificationStatus {
+  PENDING
+  SENT
+  FAILED
+}
+
+enum WebhookEventType {
+  ORDER_COMPLETE
+  ORDER_FAILED
+  SUBSCRIPTION_UPDATE
+  TASKING_UPDATE
+  CATALOG_UPDATE
+}
+
+# -------------------------
+# Core Geometry Types
+# -------------------------
+
+type Point {
+  type: GeometryType!
+  coordinates: [Float64!]!
+}
+
+type Polygon {
+  type: GeometryType!
+  coordinates: [[[Float64!]!]!]!
+}
+
+type MultiPolygon {
+  type: GeometryType!
+  coordinates: [[[[Float64!]!]!]!]!
+}
+
+type BoundingBox {
+  west: Float64!
+  south: Float64!
+  east: Float64!
+  north: Float64!
+}
+
+type Geometry {
+  type: GeometryType!
+  coordinates: JSON!
+}
+
+# -------------------------
+# Scene / Item Types
+# -------------------------
+
+type SceneProperties {
+  acquired: DateTime!
+  anomalousPixels: Float
+  cloudCover: Float
+  cloudPercent: Float
+  groundControl: Boolean
+  gsd: Float
+  itemType: ItemType!
+  origin: String
+  pixelResolution: Float
+  provider: String
+  published: DateTime
+  satellite: String
+  stripId: String
+  sunAzimuth: Float
+  sunElevation: Float
+  updated: DateTime
+  usableData: Float
+  viewAngle: Float
+  offNadirAngle: Float
+  epsg: Int
+  rows: Int
+  columns: Int
+}
+
+type Scene {
+  id: ID!
+  type: String!
+  geometry: Geometry!
+  bbox: [Float64!]!
+  properties: SceneProperties!
+  links: SceneLinks!
+  assets: [Asset!]
+}
+
+type SceneLinks {
+  self: URL!
+  assets: URL!
+  thumbnail: URL
+}
+
+type Asset {
+  type: AssetType!
+  status: AssetStatus!
+  location: URL
+  expiresAt: DateTime
+  permissions: [String!]!
+  links: AssetLinks!
+  md5Digest: String
+  sizeBytes: Int
+}
+
+type AssetLinks {
+  self: URL
+  activate: URL
+  download: URL
+  thumbnail: URL
+}
+
+type ScenePage {
+  items: [Scene!]!
+  total: Int
+  nextPageToken: String
+  hasNextPage: Boolean!
+}
+
+# -------------------------
+# Search / Filter Types
+# -------------------------
+
+type SearchFilter {
+  type: String!
+  config: JSON
+  fieldName: String
+}
+
+type SavedSearch {
+  id: ID!
+  name: String!
+  itemTypes: [ItemType!]!
+  filter: JSON!
+  created: DateTime!
+  updated: DateTime
+  isQuickSearch: Boolean!
+  links: SearchLinks!
+}
+
+type SearchLinks {
+  self: URL!
+  results: URL!
+}
+
+type SearchPage {
+  items: [SavedSearch!]!
+  nextPageToken: String
+  hasNextPage: Boolean!
+}
+
+# -------------------------
+# Orders Types
+# -------------------------
+
+type OrderProduct {
+  itemIds: [String!]!
+  itemType: ItemType!
+  productBundle: String!
+}
+
+type OrderTool {
+  type: OrderToolType!
+  parameters: JSON
+}
+
+type OrderDelivery {
+  type: DeliveryType!
+  archiveType: String
+  singleArchive: Boolean
+  archiveFilename: String
+  bucket: String
+  bucketPath: String
+  credentials: String
+}
+
+type OrderNotification {
+  email: Boolean!
+  webhook: WebhookConfig
+}
+
+type WebhookConfig {
+  url: URL!
+  perOrder: Boolean
+}
+
+type OrderItem {
+  id: String!
+  name: String!
+  status: String!
+  deliveryState: String
+  errors: [String]
+}
+
+type Order {
+  id: ID!
+  name: String!
+  state: OrderStatus!
+  products: [OrderProduct!]!
+  tools: [OrderTool!]
+  delivery: OrderDelivery
+  notifications: OrderNotification
+  created: DateTime!
+  lastMessage: String
+  lastMessageTime: DateTime
+  errorHints: [String]
+  orderType: String
+  links: OrderLinks!
+  items: [OrderItem!]
+}
+
+type OrderLinks {
+  self: URL!
+  results: URL
+}
+
+type OrderPage {
+  orders: [Order!]!
+  nextPageToken: String
+  hasNextPage: Boolean!
+}
+
+# -------------------------
+# Subscription Types
+# -------------------------
+
+type SubscriptionFilter {
+  type: String!
+  config: JSON
+}
+
+type SubscriptionCatalogSource {
+  itemTypes: [ItemType!]!
+  assetTypes: [AssetType!]!
+  filter: JSON
+  rruleOptions: RRuleOptions
+}
+
+type RRuleOptions {
+  freq: String
+  interval: Int
+  dtstart: DateTime
+  count: Int
+}
+
+type SubscriptionDelivery {
+  type: DeliveryType!
+  bucket: String
+  bucketPath: String
+  credentials: String
+}
+
+type SubscriptionNotification {
+  webhook: WebhookConfig
+  email: Boolean
+}
+
+type Subscription {
+  id: ID!
+  name: String!
+  status: SubscriptionStatus!
+  source: SubscriptionCatalogSource!
+  filter: JSON
+  delivery: SubscriptionDelivery!
+  notifications: SubscriptionNotification
+  geometry: Geometry
+  created: DateTime!
+  updated: DateTime
+  metadata: SubscriptionMetadata
+  links: SubscriptionLinks!
+}
+
+type SubscriptionMetadata {
+  stage: String
+  lastAcquired: DateTime
+  itemCount: Int
+  errorCount: Int
+}
+
+type SubscriptionLinks {
+  self: URL!
+  results: URL
+}
+
+type SubscriptionPage {
+  subscriptions: [Subscription!]!
+  nextPageToken: String
+  hasNextPage: Boolean!
+}
+
+type SubscriptionResult {
+  id: String!
+  subscriptionId: String!
+  status: String!
+  location: URL
+  created: DateTime
+  completedTime: DateTime
+}
+
+# -------------------------
+# Tasking Types
+# -------------------------
+
+type TaskingWindow {
+  startTime: DateTime!
+  endTime: DateTime!
+}
+
+type TaskingQuotaUsage {
+  usedKm2: Float
+  remainingKm2: Float
+  totalKm2: Float
+}
+
+type TaskingOrder {
+  id: ID!
+  name: String!
+  status: TaskingStatus!
+  geometry: Geometry!
+  startTime: DateTime!
+  endTime: DateTime!
+  satelliteId: String
+  constellation: SatelliteConstellation!
+  priority: String
+  created: DateTime!
+  updated: DateTime
+  captureWindows: [TaskingWindow!]
+  quotaUsage: TaskingQuotaUsage
+  captures: [TaskingCapture!]
+  links: TaskingLinks!
+}
+
+type TaskingCapture {
+  id: ID!
+  status: String!
+  acquiredTime: DateTime
+  satellite: String
+  cloudCover: Float
+  sceneIds: [String!]
+}
+
+type TaskingLinks {
+  self: URL!
+}
+
+type TaskingPage {
+  taskingOrders: [TaskingOrder!]!
+  nextPageToken: String
+  hasNextPage: Boolean!
+}
+
+# -------------------------
+# Basemap Types
+# -------------------------
+
+type Basemap {
+  id: ID!
+  name: String!
+  displayName: String
+  cadence: BasemapCadence!
+  startDate: DateTime
+  endDate: DateTime
+  datasetLinks: JSON
+  levelRange: LevelRange
+  tileUrl: URL
+  wmtsUrl: URL
+  bbox: BoundingBox
+  coverage: Float
+  itemTypes: [ItemType!]
+  links: BasemapLinks!
+}
+
+type LevelRange {
+  min: Int!
+  max: Int!
+}
+
+type BasemapLinks {
+  self: URL!
+  tiles: URL
+  wmts: URL
+  thumbnail: URL
+}
+
+type BasemapSeries {
+  id: ID!
+  name: String!
+  cadence: BasemapCadence!
+  mosaics: [Basemap!]!
+  totalCount: Int!
+}
+
+type BasemapPage {
+  mosaics: [Basemap!]!
+  nextPageToken: String
+  hasNextPage: Boolean!
+}
+
+# -------------------------
+# Analytics Types
+# -------------------------
+
+type AnalyticFeed {
+  id: ID!
+  name: String!
+  feedType: AnalyticFeedType!
+  status: String!
+  geometry: Geometry
+  itemType: ItemType
+  timeStart: DateTime
+  timeEnd: DateTime
+  created: DateTime!
+  updated: DateTime
+  links: AnalyticFeedLinks!
+}
+
+type AnalyticFeedLinks {
+  self: URL!
+  results: URL
+}
+
+type AnalyticResult {
+  id: ID!
+  feedId: String!
+  geometry: Geometry
+  properties: JSON!
+  acquisitionDate: DateTime
+  confidence: Float
+  links: AnalyticResultLinks!
+}
+
+type AnalyticResultLinks {
+  self: URL!
+}
+
+type AnalyticPage {
+  feeds: [AnalyticFeed!]!
+  nextPageToken: String
+  hasNextPage: Boolean!
+}
+
+# -------------------------
+# Feature / AOI Types
+# -------------------------
+
+type FeatureCollection {
+  id: ID!
+  type: FeatureType!
+  name: String!
+  features: [Feature!]
+  created: DateTime!
+  updated: DateTime
+  featureCount: Int
+  links: FeatureLinks!
+}
+
+type Feature {
+  id: ID!
+  type: FeatureType!
+  geometry: Geometry!
+  properties: JSON
+  name: String
+  created: DateTime!
+  updated: DateTime
+  collectionId: String
+  links: FeatureLinks!
+}
+
+type FeatureLinks {
+  self: URL!
+}
+
+type FeaturePage {
+  features: [Feature!]!
+  nextPageToken: String
+  hasNextPage: Boolean!
+}
+
+# -------------------------
+# Statistics Types
+# -------------------------
+
+type StatisticsResult {
+  statistics: [BandStatistic!]!
+  buckets: [HistogramBucket!]
+  bandNames: [String!]
+  crs: String
+  acquisitionDate: DateTime
+  geometry: Geometry
+}
+
+type BandStatistic {
+  bandName: String!
+  mean: Float
+  median: Float
+  min: Float
+  max: Float
+  stddev: Float
+  percentile25: Float
+  percentile75: Float
+  percentile90: Float
+  count: Int
+  noDataCount: Int
+}
+
+type HistogramBucket {
+  value: Float!
+  count: Int!
+  bandName: String
+}
+
+type TimeSeriesStatistic {
+  date: DateTime!
+  statistics: StatisticsResult!
+}
+
+# -------------------------
+# Catalog Types (STAC)
+# -------------------------
+
+type STACCollection {
+  id: ID!
+  title: String
+  description: String
+  extent: STACExtent
+  itemCount: Int
+  license: String
+  links: [STACLink!]!
+  providers: [STACProvider!]
+  summaries: JSON
+}
+
+type STACExtent {
+  spatial: STACSpatialExtent!
+  temporal: STACTemporalExtent!
+}
+
+type STACSpatialExtent {
+  bbox: [[Float64!]!]!
+}
+
+type STACTemporalExtent {
+  interval: [[DateTime]!]!
+}
+
+type STACLink {
+  rel: String!
+  href: URL!
+  type: String
+  title: String
+}
+
+type STACProvider {
+  name: String!
+  description: String
+  roles: [String!]
+  url: URL
+}
+
+# -------------------------
+# Account / Auth Types
+# -------------------------
+
+type Account {
+  id: ID!
+  email: String!
+  organizationId: String
+  organizationName: String
+  roles: [String!]!
+  quotas: [QuotaInfo!]
+  created: DateTime!
+}
+
+type QuotaInfo {
+  resource: String!
+  limit: Float
+  used: Float
+  unit: String
+}
+
+type ApiKey {
+  id: ID!
+  name: String
+  created: DateTime!
+  lastUsed: DateTime
+  scopes: [String!]!
+}
+
+# -------------------------
+# Notification Types
+# -------------------------
+
+type Notification {
+  id: ID!
+  type: WebhookEventType!
+  status: NotificationStatus!
+  orderId: String
+  subscriptionId: String
+  payload: JSON
+  createdAt: DateTime!
+  sentAt: DateTime
+}
+
+# -------------------------
+# Tile Types
+# -------------------------
+
+type TileLayer {
+  id: ID!
+  name: String!
+  tileUrl: URL!
+  wmtsUrl: URL
+  minZoom: Int
+  maxZoom: Int
+  bbox: BoundingBox
+  attribution: String
+}
+
+# -------------------------
+# Input Types
+# -------------------------
+
+input GeometryInput {
+  type: GeometryType!
+  coordinates: JSON!
+}
+
+input BoundingBoxInput {
+  west: Float64!
+  south: Float64!
+  east: Float64!
+  north: Float64!
+}
+
+input DateRangeInput {
+  gte: DateTime
+  lte: DateTime
+  gt: DateTime
+  lt: DateTime
+}
+
+input SceneSearchInput {
+  itemTypes: [ItemType!]!
+  filter: JSON
+  geometry: GeometryInput
+  bbox: BoundingBoxInput
+  startDate: DateTime
+  endDate: DateTime
+  cloudCoverMax: Float
+  limit: Int
+  pageToken: String
+  sortField: String
+  sortOrder: SortOrder
+}
+
+input SaveSearchInput {
+  name: String!
+  itemTypes: [ItemType!]!
+  filter: JSON!
+}
+
+input CreateOrderInput {
+  name: String!
+  products: [OrderProductInput!]!
+  tools: [OrderToolInput!]
+  delivery: OrderDeliveryInput
+  notifications: OrderNotificationInput
+  metadata: JSON
+}
+
+input OrderProductInput {
+  itemIds: [String!]!
+  itemType: ItemType!
+  productBundle: String!
+}
+
+input OrderToolInput {
+  type: OrderToolType!
+  parameters: JSON
+}
+
+input OrderDeliveryInput {
+  type: DeliveryType!
+  archiveType: String
+  singleArchive: Boolean
+  archiveFilename: String
+  bucket: String
+  bucketPath: String
+  credentials: String
+}
+
+input OrderNotificationInput {
+  email: Boolean
+  webhookUrl: URL
+  perOrder: Boolean
+}
+
+input CreateSubscriptionInput {
+  name: String!
+  source: SubscriptionSourceInput!
+  filter: JSON
+  delivery: SubscriptionDeliveryInput!
+  notifications: SubscriptionNotificationInput
+  geometry: GeometryInput
+}
+
+input SubscriptionSourceInput {
+  itemTypes: [ItemType!]!
+  assetTypes: [AssetType!]!
+  filter: JSON
+  startDate: DateTime
+  endDate: DateTime
+}
+
+input SubscriptionDeliveryInput {
+  type: DeliveryType!
+  bucket: String
+  bucketPath: String
+  credentials: String
+}
+
+input SubscriptionNotificationInput {
+  email: Boolean
+  webhookUrl: URL
+}
+
+input CreateTaskingOrderInput {
+  name: String!
+  geometry: GeometryInput!
+  startTime: DateTime!
+  endTime: DateTime!
+  constellation: SatelliteConstellation!
+  priority: String
+  options: JSON
+}
+
+input BasemapFilterInput {
+  cadence: BasemapCadence
+  startDate: DateTime
+  endDate: DateTime
+  bbox: BoundingBoxInput
+  limit: Int
+  pageToken: String
+}
+
+input AnalyticFeedFilterInput {
+  feedType: AnalyticFeedType
+  status: String
+  limit: Int
+  pageToken: String
+}
+
+input StatisticsInput {
+  geometry: GeometryInput!
+  itemTypes: [ItemType!]!
+  assetType: AssetType!
+  filter: JSON
+  startDate: DateTime!
+  endDate: DateTime!
+  bands: [String!]
+  interval: String
+}
+
+input CreateFeatureInput {
+  name: String
+  geometry: GeometryInput!
+  properties: JSON
+}
+
+input CreateFeatureCollectionInput {
+  name: String!
+  features: [CreateFeatureInput!]
+}
+
+input UpdateSubscriptionInput {
+  status: SubscriptionStatus
+  notifications: SubscriptionNotificationInput
+}
+
+# -------------------------
+# Query Root
+# -------------------------
+
+type Query {
+  # Scene / Data API
+  scene(id: ID!, itemType: ItemType!): Scene
+  scenes(search: SceneSearchInput!): ScenePage!
+  savedSearch(id: ID!): SavedSearch
+  savedSearches(pageToken: String, limit: Int): SearchPage!
+  searchById(searchId: ID!, pageToken: String, limit: Int): ScenePage!
+
+  # Assets
+  sceneAssets(sceneId: ID!, itemType: ItemType!): [Asset!]!
+
+  # Orders API
+  order(id: ID!): Order
+  orders(status: OrderStatus, pageToken: String, limit: Int): OrderPage!
+
+  # Subscriptions API
+  subscription(id: ID!): Subscription
+  subscriptions(status: SubscriptionStatus, pageToken: String, limit: Int): SubscriptionPage!
+  subscriptionResults(subscriptionId: ID!, pageToken: String, limit: Int): [SubscriptionResult!]!
+
+  # Tasking API
+  taskingOrder(id: ID!): TaskingOrder
+  taskingOrders(status: TaskingStatus, constellation: SatelliteConstellation, pageToken: String, limit: Int): TaskingPage!
+  taskingQuota: TaskingQuotaUsage!
+
+  # Basemaps API
+  basemap(id: ID!): Basemap
+  basemaps(filter: BasemapFilterInput): BasemapPage!
+  basemapSeries(seriesId: ID!): BasemapSeries
+
+  # Analytics API
+  analyticFeed(id: ID!): AnalyticFeed
+  analyticFeeds(filter: AnalyticFeedFilterInput): AnalyticPage!
+  analyticResults(feedId: ID!, geometry: GeometryInput, startDate: DateTime, endDate: DateTime, pageToken: String, limit: Int): [AnalyticResult!]!
+
+  # Features API
+  feature(id: ID!): Feature
+  features(collectionId: ID, pageToken: String, limit: Int): FeaturePage!
+  featureCollection(id: ID!): FeatureCollection
+  featureCollections(pageToken: String, limit: Int): [FeatureCollection!]!
+
+  # Statistics API
+  statistics(input: StatisticsInput!): StatisticsResult!
+  timeSeriesStatistics(input: StatisticsInput!): [TimeSeriesStatistic!]!
+
+  # STAC Catalog
+  stacCollection(id: ID!): STACCollection
+  stacCollections: [STACCollection!]!
+
+  # Tiles API
+  tileLayer(itemType: ItemType!, filter: JSON): TileLayer
+  basemapTileLayer(mosaicId: ID!): TileLayer
+
+  # Account
+  account: Account!
+  apiKeys: [ApiKey!]!
+}
+
+# -------------------------
+# Mutation Root
+# -------------------------
+
+type Mutation {
+  # Data API - Saved Searches
+  createSavedSearch(input: SaveSearchInput!): SavedSearch!
+  updateSavedSearch(id: ID!, input: SaveSearchInput!): SavedSearch!
+  deleteSavedSearch(id: ID!): Boolean!
+
+  # Data API - Asset Activation
+  activateAsset(sceneId: ID!, itemType: ItemType!, assetType: AssetType!): Asset!
+
+  # Orders API
+  createOrder(input: CreateOrderInput!): Order!
+  cancelOrder(id: ID!): Order!
+
+  # Subscriptions API
+  createSubscription(input: CreateSubscriptionInput!): Subscription!
+  updateSubscription(id: ID!, input: UpdateSubscriptionInput!): Subscription!
+  cancelSubscription(id: ID!): Subscription!
+
+  # Tasking API
+  createTaskingOrder(input: CreateTaskingOrderInput!): TaskingOrder!
+  cancelTaskingOrder(id: ID!): TaskingOrder!
+
+  # Features API
+  createFeature(collectionId: ID, input: CreateFeatureInput!): Feature!
+  updateFeature(id: ID!, input: CreateFeatureInput!): Feature!
+  deleteFeature(id: ID!): Boolean!
+  createFeatureCollection(input: CreateFeatureCollectionInput!): FeatureCollection!
+  deleteFeatureCollection(id: ID!): Boolean!
+
+  # Account
+  createApiKey(name: String, scopes: [String!]): ApiKey!
+  deleteApiKey(id: ID!): Boolean!
+}
