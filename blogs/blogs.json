@@ -9,13 +9,13 @@
       "method": "none"
     },
     {
-      "source": "https://www.planet.com/pulse/",
+      "source": "https://www.planet.com/pulse/rss/",
       "feed_url": "https://www.planet.com/pulse/rss/",
       "title": "",
-      "saved": 0,
-      "method": "discovered"
+      "saved": 2,
+      "method": "feed"
     }
   ],
-  "post_count": 0,
-  "fetched": "2026-06-14T20:42:17Z"
+  "post_count": 3,
+  "fetched": "2026-06-27T12:03:07Z"
 }
