@@ -1,0 +1,25 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/planet-labs-openapi.yml
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - header
+schemes:
+- name: basicAuth
+  type: http
+  scheme: basic
+  description: |-
+    HTTP Basic with the Planet API key as the username and an empty
+    password.
+  sources:
+  - openapi/planet-labs-openapi.yml
+- name: apiKeyAuth
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: Alternative API key/token header.
+  sources:
+  - openapi/planet-labs-openapi.yml
