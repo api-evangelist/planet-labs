@@ -199,6 +199,8 @@ apis:
   - type: Repository
     url: https://github.com/planetlabs/planet-client-python
 common:
+- type: AgenticAccess
+  url: agentic-access/planet-labs-agentic-access.yml
 - type: DomainSecurity
   url: security/planet-labs-domain-security.yml
 - type: Authentication
