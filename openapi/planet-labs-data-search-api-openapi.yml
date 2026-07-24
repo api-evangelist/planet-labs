@@ -1,0 +1,146 @@
+openapi: 3.1.0
+info:
+  title: Planet Insights Platform Data - Item Types Data - Search API
+  description: 'Planet Labs operates the largest commercial Earth observation
+
+    constellation. This specification covers the public REST surfaces of the
+
+    Planet Insights Platform: the Data API (catalog search and asset
+
+    metadata), the Orders API (bundle preparation and delivery), and the
+
+    Subscriptions API (standing AOI feeds). All APIs sit under
+
+    api.planet.com and authenticate with an API key over HTTP Basic
+
+    (the API key is supplied as the username, with an empty password) or
+
+    via a Bearer access token where supported.
+
+    '
+  version: 1.0.0
+  contact:
+    name: API Evangelist
+    email: kin@apievangelist.com
+  license:
+    name: Proprietary
+servers:
+- url: https://api.planet.com
+  description: Planet Insights Platform
+security:
+- basicAuth: []
+- apiKeyAuth: []
+tags:
+- name: Data - Search
+  description: Catalog search and saved searches.
+paths:
+  /data/v1/quick-search:
+    post:
+      tags:
+      - Data - Search
+      summary: Execute a structured search
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchRequest'
+      responses:
+        '200':
+          description: Search results.
+  /data/v1/searches:
+    get:
+      tags:
+      - Data - Search
+      summary: List saved searches
+      responses:
+        '200':
+          description: Saved searches.
+    post:
+      tags:
+      - Data - Search
+      summary: Create a saved search
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchRequest'
+      responses:
+        '201':
+          description: Saved search created.
+  /data/v1/searches/{search_id}:
+    parameters:
+    - $ref: '#/components/parameters/SearchId'
+    get:
+      tags:
+      - Data - Search
+      summary: Get saved search details
+      responses:
+        '200':
+          description: Saved search.
+    put:
+      tags:
+      - Data - Search
+      summary: Update saved search
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchRequest'
+      responses:
+        '200':
+          description: Updated saved search.
+    delete:
+      tags:
+      - Data - Search
+      summary: Delete saved search
+      responses:
+        '204':
+          description: Deleted.
+  /data/v1/searches/{search_id}/results:
+    parameters:
+    - $ref: '#/components/parameters/SearchId'
+    get:
+      tags:
+      - Data - Search
+      summary: Run a saved search
+      responses:
+        '200':
+          description: Search results.
+components:
+  schemas:
+    SearchRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        item_types:
+          type: array
+          items:
+            type: string
+        filter:
+          type: object
+          additionalProperties: true
+  parameters:
+    SearchId:
+      name: search_id
+      in: path
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: 'HTTP Basic with the Planet API key as the username and an empty
+
+        password.
+
+        '
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Alternative API key/token header.

@@ -1,0 +1,154 @@
+openapi: 3.1.0
+info:
+  title: Planet Insights Platform Data - Item Types Orders API
+  description: 'Planet Labs operates the largest commercial Earth observation
+
+    constellation. This specification covers the public REST surfaces of the
+
+    Planet Insights Platform: the Data API (catalog search and asset
+
+    metadata), the Orders API (bundle preparation and delivery), and the
+
+    Subscriptions API (standing AOI feeds). All APIs sit under
+
+    api.planet.com and authenticate with an API key over HTTP Basic
+
+    (the API key is supplied as the username, with an empty password) or
+
+    via a Bearer access token where supported.
+
+    '
+  version: 1.0.0
+  contact:
+    name: API Evangelist
+    email: kin@apievangelist.com
+  license:
+    name: Proprietary
+servers:
+- url: https://api.planet.com
+  description: Planet Insights Platform
+security:
+- basicAuth: []
+- apiKeyAuth: []
+tags:
+- name: Orders
+  description: Bundle preparation and delivery jobs.
+paths:
+  /compute/ops/orders/v2:
+    get:
+      tags:
+      - Orders
+      summary: List orders
+      responses:
+        '200':
+          description: Orders collection.
+    post:
+      tags:
+      - Orders
+      summary: Create order
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderRequest'
+      responses:
+        '202':
+          description: Order accepted.
+  /compute/ops/orders/v2/{order_id}:
+    parameters:
+    - $ref: '#/components/parameters/OrderId'
+    get:
+      tags:
+      - Orders
+      summary: Get order
+      responses:
+        '200':
+          description: Order.
+    put:
+      tags:
+      - Orders
+      summary: Cancel an order
+      responses:
+        '200':
+          description: Order cancellation accepted.
+  /compute/ops/bulk/orders/v2/cancel:
+    post:
+      tags:
+      - Orders
+      summary: Cancel orders in bulk
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                order_ids:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '200':
+          description: Bulk cancel accepted.
+  /compute/ops/stats/orders/v2:
+    get:
+      tags:
+      - Orders
+      summary: Aggregated order stats
+      responses:
+        '200':
+          description: Stats response.
+components:
+  schemas:
+    OrderRequest:
+      type: object
+      required:
+      - name
+      - products
+      properties:
+        name:
+          type: string
+        products:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+        delivery:
+          type: object
+          additionalProperties: true
+        notifications:
+          type: object
+          additionalProperties: true
+        tools:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+        metadata:
+          type: object
+          additionalProperties: true
+        hosting:
+          type: object
+          additionalProperties: true
+  parameters:
+    OrderId:
+      name: order_id
+      in: path
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: 'HTTP Basic with the Planet API key as the username and an empty
+
+        password.
+
+        '
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Alternative API key/token header.

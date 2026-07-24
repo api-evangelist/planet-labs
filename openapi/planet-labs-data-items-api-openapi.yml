@@ -1,0 +1,104 @@
+openapi: 3.1.0
+info:
+  title: Planet Insights Platform Data - Item Types Data - Items API
+  description: 'Planet Labs operates the largest commercial Earth observation
+
+    constellation. This specification covers the public REST surfaces of the
+
+    Planet Insights Platform: the Data API (catalog search and asset
+
+    metadata), the Orders API (bundle preparation and delivery), and the
+
+    Subscriptions API (standing AOI feeds). All APIs sit under
+
+    api.planet.com and authenticate with an API key over HTTP Basic
+
+    (the API key is supplied as the username, with an empty password) or
+
+    via a Bearer access token where supported.
+
+    '
+  version: 1.0.0
+  contact:
+    name: API Evangelist
+    email: kin@apievangelist.com
+  license:
+    name: Proprietary
+servers:
+- url: https://api.planet.com
+  description: Planet Insights Platform
+security:
+- basicAuth: []
+- apiKeyAuth: []
+tags:
+- name: Data - Items
+  description: Item and asset retrieval.
+paths:
+  /data/v1/item-types/{item_type_id}/items/{item_id}:
+    parameters:
+    - $ref: '#/components/parameters/ItemTypeId'
+    - $ref: '#/components/parameters/ItemId'
+    get:
+      tags:
+      - Data - Items
+      summary: Get item by ID
+      responses:
+        '200':
+          description: Item document.
+  /data/v1/item-types/{item_type_id}/items/{item_id}/assets:
+    parameters:
+    - $ref: '#/components/parameters/ItemTypeId'
+    - $ref: '#/components/parameters/ItemId'
+    get:
+      tags:
+      - Data - Items
+      summary: List assets for an item
+      responses:
+        '200':
+          description: Asset map.
+  /data/v1/item-types/{item_type_id}/items/{item_id}/coverage:
+    parameters:
+    - $ref: '#/components/parameters/ItemTypeId'
+    - $ref: '#/components/parameters/ItemId'
+    post:
+      tags:
+      - Data - Items
+      summary: Cloud coverage estimate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Coverage report.
+components:
+  parameters:
+    ItemId:
+      name: item_id
+      in: path
+      required: true
+      schema:
+        type: string
+    ItemTypeId:
+      name: item_type_id
+      in: path
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: 'HTTP Basic with the Planet API key as the username and an empty
+
+        password.
+
+        '
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Alternative API key/token header.

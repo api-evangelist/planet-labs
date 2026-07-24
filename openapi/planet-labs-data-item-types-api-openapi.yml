@@ -1,0 +1,100 @@
+openapi: 3.1.0
+info:
+  title: Planet Insights Platform Data - Item Types API
+  description: 'Planet Labs operates the largest commercial Earth observation
+
+    constellation. This specification covers the public REST surfaces of the
+
+    Planet Insights Platform: the Data API (catalog search and asset
+
+    metadata), the Orders API (bundle preparation and delivery), and the
+
+    Subscriptions API (standing AOI feeds). All APIs sit under
+
+    api.planet.com and authenticate with an API key over HTTP Basic
+
+    (the API key is supplied as the username, with an empty password) or
+
+    via a Bearer access token where supported.
+
+    '
+  version: 1.0.0
+  contact:
+    name: API Evangelist
+    email: kin@apievangelist.com
+  license:
+    name: Proprietary
+servers:
+- url: https://api.planet.com
+  description: Planet Insights Platform
+security:
+- basicAuth: []
+- apiKeyAuth: []
+tags:
+- name: Data - Item Types
+  description: Item type and asset type metadata.
+paths:
+  /data/v1/asset-types:
+    get:
+      tags:
+      - Data - Item Types
+      summary: List all asset types
+      responses:
+        '200':
+          description: Asset type collection.
+  /data/v1/asset-types/{asset_type_id}:
+    parameters:
+    - $ref: '#/components/parameters/AssetTypeId'
+    get:
+      tags:
+      - Data - Item Types
+      summary: Get an asset type
+      responses:
+        '200':
+          description: Asset type.
+  /data/v1/item-types:
+    get:
+      tags:
+      - Data - Item Types
+      summary: List all item types
+      responses:
+        '200':
+          description: Item type collection.
+  /data/v1/item-types/{item_type_id}:
+    parameters:
+    - $ref: '#/components/parameters/ItemTypeId'
+    get:
+      tags:
+      - Data - Item Types
+      summary: Get an item type
+      responses:
+        '200':
+          description: Item type.
+components:
+  parameters:
+    ItemTypeId:
+      name: item_type_id
+      in: path
+      required: true
+      schema:
+        type: string
+    AssetTypeId:
+      name: asset_type_id
+      in: path
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: 'HTTP Basic with the Planet API key as the username and an empty
+
+        password.
+
+        '
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Alternative API key/token header.
