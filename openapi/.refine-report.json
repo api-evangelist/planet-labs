@@ -1,0 +1,24 @@
+{
+  "provider": "planet-labs",
+  "sources": [
+    "planet-labs-data-item-types-api-openapi.yml",
+    "planet-labs-data-items-api-openapi.yml",
+    "planet-labs-data-search-api-openapi.yml",
+    "planet-labs-data-stats-api-openapi.yml",
+    "planet-labs-orders-api-openapi.yml",
+    "planet-labs-subscriptions-api-openapi.yml"
+  ],
+  "outputs": [
+    "planet-labs-data-item-types-api-openapi.yml",
+    "planet-labs-data-items-api-openapi.yml",
+    "planet-labs-data-search-api-openapi.yml",
+    "planet-labs-data-stats-api-openapi.yml",
+    "planet-labs-orders-api-openapi.yml",
+    "planet-labs-subscriptions-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

@@ -1,0 +1,478 @@
+openapi: 3.1.0
+info:
+  title: Planet Insights Platform API
+  description: |
+    Planet Labs operates the largest commercial Earth observation
+    constellation. This specification covers the public REST surfaces of the
+    Planet Insights Platform: the Data API (catalog search and asset
+    metadata), the Orders API (bundle preparation and delivery), and the
+    Subscriptions API (standing AOI feeds). All APIs sit under
+    api.planet.com and authenticate with an API key over HTTP Basic
+    (the API key is supplied as the username, with an empty password) or
+    via a Bearer access token where supported.
+  version: "1.0.0"
+  contact:
+    name: API Evangelist
+    email: kin@apievangelist.com
+  license:
+    name: Proprietary
+servers:
+  - url: https://api.planet.com
+    description: Planet Insights Platform
+security:
+  - basicAuth: []
+  - apiKeyAuth: []
+tags:
+  - name: Data - Item Types
+    description: Item type and asset type metadata.
+  - name: Data - Items
+    description: Item and asset retrieval.
+  - name: Data - Search
+    description: Catalog search and saved searches.
+  - name: Data - Stats
+    description: Search-driven statistics.
+  - name: Orders
+    description: Bundle preparation and delivery jobs.
+  - name: Subscriptions
+    description: Standing area-of-interest delivery feeds.
+paths:
+  /data/v1/asset-types:
+    get:
+      tags: [Data - Item Types]
+      summary: List all asset types
+      responses:
+        '200':
+          description: Asset type collection.
+  /data/v1/asset-types/{asset_type_id}:
+    parameters:
+      - $ref: '#/components/parameters/AssetTypeId'
+    get:
+      tags: [Data - Item Types]
+      summary: Get an asset type
+      responses:
+        '200':
+          description: Asset type.
+  /data/v1/item-types:
+    get:
+      tags: [Data - Item Types]
+      summary: List all item types
+      responses:
+        '200':
+          description: Item type collection.
+  /data/v1/item-types/{item_type_id}:
+    parameters:
+      - $ref: '#/components/parameters/ItemTypeId'
+    get:
+      tags: [Data - Item Types]
+      summary: Get an item type
+      responses:
+        '200':
+          description: Item type.
+  /data/v1/item-types/{item_type_id}/items/{item_id}:
+    parameters:
+      - $ref: '#/components/parameters/ItemTypeId'
+      - $ref: '#/components/parameters/ItemId'
+    get:
+      tags: [Data - Items]
+      summary: Get item by ID
+      responses:
+        '200':
+          description: Item document.
+  /data/v1/item-types/{item_type_id}/items/{item_id}/assets:
+    parameters:
+      - $ref: '#/components/parameters/ItemTypeId'
+      - $ref: '#/components/parameters/ItemId'
+    get:
+      tags: [Data - Items]
+      summary: List assets for an item
+      responses:
+        '200':
+          description: Asset map.
+  /data/v1/item-types/{item_type_id}/items/{item_id}/coverage:
+    parameters:
+      - $ref: '#/components/parameters/ItemTypeId'
+      - $ref: '#/components/parameters/ItemId'
+    post:
+      tags: [Data - Items]
+      summary: Cloud coverage estimate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Coverage report.
+  /data/v1/quick-search:
+    post:
+      tags: [Data - Search]
+      summary: Execute a structured search
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchRequest'
+      responses:
+        '200':
+          description: Search results.
+  /data/v1/searches:
+    get:
+      tags: [Data - Search]
+      summary: List saved searches
+      responses:
+        '200':
+          description: Saved searches.
+    post:
+      tags: [Data - Search]
+      summary: Create a saved search
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchRequest'
+      responses:
+        '201':
+          description: Saved search created.
+  /data/v1/searches/{search_id}:
+    parameters:
+      - $ref: '#/components/parameters/SearchId'
+    get:
+      tags: [Data - Search]
+      summary: Get saved search details
+      responses:
+        '200':
+          description: Saved search.
+    put:
+      tags: [Data - Search]
+      summary: Update saved search
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchRequest'
+      responses:
+        '200':
+          description: Updated saved search.
+    delete:
+      tags: [Data - Search]
+      summary: Delete saved search
+      responses:
+        '204':
+          description: Deleted.
+  /data/v1/searches/{search_id}/results:
+    parameters:
+      - $ref: '#/components/parameters/SearchId'
+    get:
+      tags: [Data - Search]
+      summary: Run a saved search
+      responses:
+        '200':
+          description: Search results.
+  /data/v1/stats:
+    post:
+      tags: [Data - Stats]
+      summary: Search stats with date histogram
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Stats response.
+  /compute/ops/orders/v2:
+    get:
+      tags: [Orders]
+      summary: List orders
+      responses:
+        '200':
+          description: Orders collection.
+    post:
+      tags: [Orders]
+      summary: Create order
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderRequest'
+      responses:
+        '202':
+          description: Order accepted.
+  /compute/ops/orders/v2/{order_id}:
+    parameters:
+      - $ref: '#/components/parameters/OrderId'
+    get:
+      tags: [Orders]
+      summary: Get order
+      responses:
+        '200':
+          description: Order.
+    put:
+      tags: [Orders]
+      summary: Cancel an order
+      responses:
+        '200':
+          description: Order cancellation accepted.
+  /compute/ops/bulk/orders/v2/cancel:
+    post:
+      tags: [Orders]
+      summary: Cancel orders in bulk
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                order_ids:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '200':
+          description: Bulk cancel accepted.
+  /compute/ops/stats/orders/v2:
+    get:
+      tags: [Orders]
+      summary: Aggregated order stats
+      responses:
+        '200':
+          description: Stats response.
+  /subscriptions/v1:
+    get:
+      tags: [Subscriptions]
+      summary: List subscriptions
+      responses:
+        '200':
+          description: Subscription collection.
+    post:
+      tags: [Subscriptions]
+      summary: Create a subscription
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubscriptionRequest'
+      responses:
+        '201':
+          description: Subscription created.
+  /subscriptions/v1/bulk:
+    post:
+      tags: [Subscriptions]
+      summary: Create multiple subscriptions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/SubscriptionRequest'
+      responses:
+        '202':
+          description: Bulk create accepted.
+  /subscriptions/v1/summary:
+    get:
+      tags: [Subscriptions]
+      summary: Summary of all subscriptions
+      responses:
+        '200':
+          description: Summary.
+  /subscriptions/v1/{subscriptionId}:
+    parameters:
+      - $ref: '#/components/parameters/SubscriptionId'
+    get:
+      tags: [Subscriptions]
+      summary: Get a subscription
+      responses:
+        '200':
+          description: Subscription.
+    patch:
+      tags: [Subscriptions]
+      summary: Patch a subscription
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Patched.
+    put:
+      tags: [Subscriptions]
+      summary: Update a subscription
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubscriptionRequest'
+      responses:
+        '200':
+          description: Updated.
+  /subscriptions/v1/{subscriptionId}/cancel:
+    parameters:
+      - $ref: '#/components/parameters/SubscriptionId'
+    post:
+      tags: [Subscriptions]
+      summary: Cancel a subscription
+      responses:
+        '200':
+          description: Cancelled.
+  /subscriptions/v1/{subscriptionId}/suspend:
+    parameters:
+      - $ref: '#/components/parameters/SubscriptionId'
+    post:
+      tags: [Subscriptions]
+      summary: Suspend a subscription
+      responses:
+        '200':
+          description: Suspended.
+  /subscriptions/v1/{subscriptionId}/reactivate:
+    parameters:
+      - $ref: '#/components/parameters/SubscriptionId'
+    post:
+      tags: [Subscriptions]
+      summary: Reactivate a subscription
+      responses:
+        '200':
+          description: Reactivated.
+  /subscriptions/v1/{subscriptionId}/results:
+    parameters:
+      - $ref: '#/components/parameters/SubscriptionId'
+    get:
+      tags: [Subscriptions]
+      summary: Get subscription results
+      responses:
+        '200':
+          description: Results.
+  /subscriptions/v1/{subscriptionId}/summary:
+    parameters:
+      - $ref: '#/components/parameters/SubscriptionId'
+    get:
+      tags: [Subscriptions]
+      summary: Get subscription results summary
+      responses:
+        '200':
+          description: Results summary.
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: |
+        HTTP Basic with the Planet API key as the username and an empty
+        password.
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Alternative API key/token header.
+  parameters:
+    AssetTypeId:
+      name: asset_type_id
+      in: path
+      required: true
+      schema:
+        type: string
+    ItemTypeId:
+      name: item_type_id
+      in: path
+      required: true
+      schema:
+        type: string
+    ItemId:
+      name: item_id
+      in: path
+      required: true
+      schema:
+        type: string
+    SearchId:
+      name: search_id
+      in: path
+      required: true
+      schema:
+        type: string
+    OrderId:
+      name: order_id
+      in: path
+      required: true
+      schema:
+        type: string
+    SubscriptionId:
+      name: subscriptionId
+      in: path
+      required: true
+      schema:
+        type: string
+  schemas:
+    SearchRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        item_types:
+          type: array
+          items:
+            type: string
+        filter:
+          type: object
+          additionalProperties: true
+    OrderRequest:
+      type: object
+      required: [name, products]
+      properties:
+        name:
+          type: string
+        products:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+        delivery:
+          type: object
+          additionalProperties: true
+        notifications:
+          type: object
+          additionalProperties: true
+        tools:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+        metadata:
+          type: object
+          additionalProperties: true
+        hosting:
+          type: object
+          additionalProperties: true
+    SubscriptionRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        source:
+          type: object
+          additionalProperties: true
+        tools:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+        delivery:
+          type: object
+          additionalProperties: true
+        notifications:
+          type: object
+          additionalProperties: true
