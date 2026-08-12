@@ -281,6 +281,9 @@ apis:
   - type: OpenAPI
     url: openapi/planet-labs-subscriptions-api-openapi.yml
 common:
+- type: License
+  name: Apache-2.0
+  url: https://github.com/planetlabs/planet-client-python/blob/main/LICENSE
 - type: AgenticAccess
   url: agentic-access/planet-labs-agentic-access.yml
 - type: DomainSecurity
