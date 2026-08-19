@@ -1,0 +1,142 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Planet Insights Platform Data - Item Types Data - Search API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Data - Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Execute a structured search",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.planet.com/data/v1/quick-search",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Execute a structured search"
+        },
+        {
+          "info": {
+            "name": "List saved searches",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.planet.com/data/v1/searches"
+          },
+          "docs": "List saved searches"
+        },
+        {
+          "info": {
+            "name": "Create a saved search",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.planet.com/data/v1/searches",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a saved search"
+        },
+        {
+          "info": {
+            "name": "Get saved search details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.planet.com/data/v1/searches/:search_id",
+            "params": [
+              {
+                "name": "search_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get saved search details"
+        },
+        {
+          "info": {
+            "name": "Update saved search",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.planet.com/data/v1/searches/:search_id",
+            "params": [
+              {
+                "name": "search_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update saved search"
+        },
+        {
+          "info": {
+            "name": "Delete saved search",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.planet.com/data/v1/searches/:search_id",
+            "params": [
+              {
+                "name": "search_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete saved search"
+        },
+        {
+          "info": {
+            "name": "Run a saved search",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.planet.com/data/v1/searches/:search_id/results",
+            "params": [
+              {
+                "name": "search_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Run a saved search"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

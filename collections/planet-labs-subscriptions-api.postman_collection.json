@@ -1,0 +1,1099 @@
+{
+  "item": [
+    {
+      "id": "230a8ee8-1c9c-49f0-880c-24f0a72b61dc",
+      "name": "Subscriptions",
+      "description": {
+        "content": "Standing area-of-interest delivery feeds.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9613b8d1-d236-4282-b043-45bbfe991c46",
+          "name": "List subscriptions",
+          "request": {
+            "name": "List subscriptions",
+            "description": {},
+            "url": {
+              "path": [
+                "subscriptions",
+                "v1"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2cb00a9c-88f2-4494-8150-718cb536665e",
+              "name": "Subscription collection.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ab282e7c-c1d1-4b40-b6e8-9127f319c700",
+          "name": "Create a subscription",
+          "request": {
+            "name": "Create a subscription",
+            "description": {},
+            "url": {
+              "path": [
+                "subscriptions",
+                "v1"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"source\": {\n    \"key_0\": 6231,\n    \"key_1\": \"string\"\n  },\n  \"tools\": [\n    {\n      \"key_0\": \"string\"\n    },\n    {\n      \"key_0\": 2976,\n      \"key_1\": 2437.1896312599415,\n      \"key_2\": false,\n      \"key_3\": true,\n      \"key_4\": \"string\"\n    }\n  ],\n  \"delivery\": {\n    \"key_0\": \"string\",\n    \"key_1\": true,\n    \"key_2\": \"string\",\n    \"key_3\": false\n  },\n  \"notifications\": {\n    \"key_0\": 7864,\n    \"key_1\": 8960,\n    \"key_2\": 4582.836371118529,\n    \"key_3\": true\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bbd7dfb7-e2d9-49ec-bfb3-32dc0f07b4cc",
+              "name": "Subscription created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"source\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"tools\": [\n    {\n      \"key_0\": \"string\",\n      \"key_1\": 2996,\n      \"key_2\": \"string\",\n      \"key_3\": \"string\"\n    },\n    {\n      \"key_0\": false,\n      \"key_1\": \"string\",\n      \"key_2\": false,\n      \"key_3\": 9638.977017802219\n    }\n  ],\n  \"delivery\": {\n    \"key_0\": \"string\"\n  },\n  \"notifications\": {\n    \"key_0\": 6095.135925362458,\n    \"key_1\": \"string\",\n    \"key_2\": 7688.301208932457\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dc176da4-f2ba-405f-8cdb-904d2e1beddb",
+          "name": "Create multiple subscriptions",
+          "request": {
+            "name": "Create multiple subscriptions",
+            "description": {},
+            "url": {
+              "path": [
+                "subscriptions",
+                "v1",
+                "bulk"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"name\": \"<string>\",\n    \"source\": {\n      \"key_0\": 7520.945266189228\n    },\n    \"tools\": [\n      {\n        \"key_0\": \"string\"\n      },\n      {\n        \"key_0\": 9501\n      }\n    ],\n    \"delivery\": {\n      \"key_0\": 9317,\n      \"key_1\": \"string\"\n    },\n    \"notifications\": {\n      \"key_0\": 4217.745034336316,\n      \"key_1\": 9138\n    }\n  },\n  {\n    \"name\": \"<string>\",\n    \"source\": {\n      \"key_0\": \"string\"\n    },\n    \"tools\": [\n      {\n        \"key_0\": false\n      },\n      {\n        \"key_0\": 4195\n      }\n    ],\n    \"delivery\": {\n      \"key_0\": 1846.0714535951638,\n      \"key_1\": true\n    },\n    \"notifications\": {\n      \"key_0\": 8519,\n      \"key_1\": 9321.775495328222,\n      \"key_2\": false,\n      \"key_3\": false\n    }\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1be2e5a7-5c89-4687-a7ae-8bc3b79e6686",
+              "name": "Bulk create accepted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    "v1",
+                    "bulk"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"name\": \"string\",\n    \"source\": {\n      \"key_0\": true\n    },\n    \"tools\": [\n      {\n        \"key_0\": 9528,\n        \"key_1\": 365.22264423128894\n      },\n      {\n        \"key_0\": false,\n        \"key_1\": true\n      }\n    ],\n    \"delivery\": {\n      \"key_0\": 9277\n    },\n    \"notifications\": {\n      \"key_0\": 2610\n    }\n  },\n  {\n    \"name\": \"string\",\n    \"source\": {\n      \"key_0\": 1021.3736449271026,\n      \"key_1\": 8225.92346849666,\n      \"key_2\": 5651\n    },\n    \"tools\": [\n      {\n        \"key_0\": 8529\n      },\n      {\n        \"key_0\": \"string\",\n        \"key_1\": 5867.466195545424,\n        \"key_2\": 8319,\n        \"key_3\": true\n      }\n    ],\n    \"delivery\": {\n      \"key_0\": false,\n      \"key_1\": 1537.0462452499744\n    },\n    \"notifications\": {\n      \"key_0\": 6916.894641953157\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4c7a169a-b95e-4019-87cb-96070bf31649",
+          "name": "Summary of all subscriptions",
+          "request": {
+            "name": "Summary of all subscriptions",
+            "description": {},
+            "url": {
+              "path": [
+                "subscriptions",
+                "v1",
+                "summary"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5a7b2af1-4bc4-44d7-b42b-7a58590a8e2f",
+              "name": "Summary.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    "v1",
+                    "summary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "157b426b-1300-410f-a162-110156b43a50",
+          "name": "Get a subscription",
+          "request": {
+            "name": "Get a subscription",
+            "description": {},
+            "url": {
+              "path": [
+                "subscriptions",
+                "v1",
+                ":subscriptionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "subscriptionId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6ea3710d-ae13-440c-a18c-8037d6289cba",
+              "name": "Subscription.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    "v1",
+                    ":subscriptionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "47ac929d-7d08-4bab-96ee-77331748e8ad",
+          "name": "Patch a subscription",
+          "request": {
+            "name": "Patch a subscription",
+            "description": {},
+            "url": {
+              "path": [
+                "subscriptions",
+                "v1",
+                ":subscriptionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "subscriptionId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key_0\": 2616\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "38d07feb-472b-4c3b-a248-f29b81e82be3",
+              "name": "Patched.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    "v1",
+                    ":subscriptionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key_0\": 1119.6894603582753\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "51bebee3-2bc2-41b1-9ccd-a216972d83d4",
+          "name": "Update a subscription",
+          "request": {
+            "name": "Update a subscription",
+            "description": {},
+            "url": {
+              "path": [
+                "subscriptions",
+                "v1",
+                ":subscriptionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "subscriptionId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"source\": {\n    \"key_0\": 6231,\n    \"key_1\": \"string\"\n  },\n  \"tools\": [\n    {\n      \"key_0\": \"string\"\n    },\n    {\n      \"key_0\": 2976,\n      \"key_1\": 2437.1896312599415,\n      \"key_2\": false,\n      \"key_3\": true,\n      \"key_4\": \"string\"\n    }\n  ],\n  \"delivery\": {\n    \"key_0\": \"string\",\n    \"key_1\": true,\n    \"key_2\": \"string\",\n    \"key_3\": false\n  },\n  \"notifications\": {\n    \"key_0\": 7864,\n    \"key_1\": 8960,\n    \"key_2\": 4582.836371118529,\n    \"key_3\": true\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2755a63a-3bb6-459b-b878-acba766ca54a",
+              "name": "Updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    "v1",
+                    ":subscriptionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"source\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"tools\": [\n    {\n      \"key_0\": \"string\",\n      \"key_1\": 2996,\n      \"key_2\": \"string\",\n      \"key_3\": \"string\"\n    },\n    {\n      \"key_0\": false,\n      \"key_1\": \"string\",\n      \"key_2\": false,\n      \"key_3\": 9638.977017802219\n    }\n  ],\n  \"delivery\": {\n    \"key_0\": \"string\"\n  },\n  \"notifications\": {\n    \"key_0\": 6095.135925362458,\n    \"key_1\": \"string\",\n    \"key_2\": 7688.301208932457\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c6465bd3-c313-49ca-aa2d-0013995d467d",
+          "name": "Cancel a subscription",
+          "request": {
+            "name": "Cancel a subscription",
+            "description": {},
+            "url": {
+              "path": [
+                "subscriptions",
+                "v1",
+                ":subscriptionId",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "subscriptionId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f7c206af-af1c-4f1e-98dc-6f36c578d493",
+              "name": "Cancelled.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    "v1",
+                    ":subscriptionId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7cb5c36b-c305-488e-96d4-21369130d456",
+          "name": "Suspend a subscription",
+          "request": {
+            "name": "Suspend a subscription",
+            "description": {},
+            "url": {
+              "path": [
+                "subscriptions",
+                "v1",
+                ":subscriptionId",
+                "suspend"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "subscriptionId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e5088910-9a08-4231-a89d-e789db78b29a",
+              "name": "Suspended.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    "v1",
+                    ":subscriptionId",
+                    "suspend"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f771bfca-d65b-4f63-aa11-c36e3e89a3e0",
+          "name": "Reactivate a subscription",
+          "request": {
+            "name": "Reactivate a subscription",
+            "description": {},
+            "url": {
+              "path": [
+                "subscriptions",
+                "v1",
+                ":subscriptionId",
+                "reactivate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "subscriptionId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "14ebda31-5b27-4998-9bf5-b4b1d083b48d",
+              "name": "Reactivated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    "v1",
+                    ":subscriptionId",
+                    "reactivate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "db8d7baf-1e37-48f9-9884-d0338fca5202",
+          "name": "Get subscription results",
+          "request": {
+            "name": "Get subscription results",
+            "description": {},
+            "url": {
+              "path": [
+                "subscriptions",
+                "v1",
+                ":subscriptionId",
+                "results"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "subscriptionId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0c65e52e-366b-4237-8299-9dcb5c49ea0e",
+              "name": "Results.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    "v1",
+                    ":subscriptionId",
+                    "results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "31978891-57b3-4932-b613-a25c8d810ff2",
+          "name": "Get subscription results summary",
+          "request": {
+            "name": "Get subscription results summary",
+            "description": {},
+            "url": {
+              "path": [
+                "subscriptions",
+                "v1",
+                ":subscriptionId",
+                "summary"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "subscriptionId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f0b16163-c1fa-47d5-8cc7-a463fd33d8e4",
+              "name": "Results summary.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    "v1",
+                    ":subscriptionId",
+                    "summary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.planet.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "432299aa-aaf6-4802-9e8e-d5b441108e32",
+    "name": "Planet Insights Platform Data - Item Types Subscriptions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Planet Labs operates the largest commercial Earth observation\nconstellation. This specification covers the public REST surfaces of the\nPlanet Insights Platform: the Data API (catalog search and asset\nmetadata), the Orders API (bundle preparation and delivery), and the\nSubscriptions API (standing AOI feeds). All APIs sit under\napi.planet.com and authenticate with an API key over HTTP Basic\n(the API key is supplied as the username, with an empty password) or\nvia a Bearer access token where supported.\n\n\nContact Support:\n Name: API Evangelist\n Email: kin@apievangelist.com",
+      "type": "text/plain"
+    }
+  }
+}

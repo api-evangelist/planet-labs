@@ -1,0 +1,559 @@
+{
+  "item": [
+    {
+      "id": "5bda3494-6ae0-4f44-ac6b-b642d5dc369d",
+      "name": "Orders",
+      "description": {
+        "content": "Bundle preparation and delivery jobs.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "58f462f0-5e6c-4c84-8ce0-85914cbcdbf8",
+          "name": "List orders",
+          "request": {
+            "name": "List orders",
+            "description": {},
+            "url": {
+              "path": [
+                "compute",
+                "ops",
+                "orders",
+                "v2"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7c9d96bf-ceb7-4272-b328-5fd2167a40a1",
+              "name": "Orders collection.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "compute",
+                    "ops",
+                    "orders",
+                    "v2"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "65c42510-c9af-4d01-a0eb-af151ff417cb",
+          "name": "Create order",
+          "request": {
+            "name": "Create order",
+            "description": {},
+            "url": {
+              "path": [
+                "compute",
+                "ops",
+                "orders",
+                "v2"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"products\": [\n    {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    {\n      \"key_0\": 6261,\n      \"key_1\": 4447,\n      \"key_2\": 2497\n    }\n  ],\n  \"delivery\": {\n    \"key_0\": \"string\",\n    \"key_1\": 3292.9210960163637\n  },\n  \"notifications\": {\n    \"key_0\": 9610.785609957387\n  },\n  \"tools\": [\n    {\n      \"key_0\": \"string\"\n    },\n    {\n      \"key_0\": 4261.9017637725\n    }\n  ],\n  \"metadata\": {\n    \"key_0\": 1539,\n    \"key_1\": 6358\n  },\n  \"hosting\": {\n    \"key_0\": 8219,\n    \"key_1\": 2919.071420486067,\n    \"key_2\": 3914\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1d8e2525-d6d6-4139-a2f4-2697978d4b91",
+              "name": "Order accepted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "compute",
+                    "ops",
+                    "orders",
+                    "v2"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"products\": [\n    {\n      \"key_0\": 8899.351196766313\n    },\n    {\n      \"key_0\": 4249\n    }\n  ],\n  \"delivery\": {\n    \"key_0\": 6547.282849214723,\n    \"key_1\": 1464\n  },\n  \"notifications\": {\n    \"key_0\": \"string\"\n  },\n  \"tools\": [\n    {\n      \"key_0\": false\n    },\n    {\n      \"key_0\": 3351.6557323115926,\n      \"key_1\": false\n    }\n  ],\n  \"metadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": 8833.142100172894,\n    \"key_2\": 9087,\n    \"key_3\": 326\n  },\n  \"hosting\": {\n    \"key_0\": true,\n    \"key_1\": 5514.131786254496,\n    \"key_2\": 5778\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4598e106-6259-4c27-a7dd-ab52944fa351",
+          "name": "Get order",
+          "request": {
+            "name": "Get order",
+            "description": {},
+            "url": {
+              "path": [
+                "compute",
+                "ops",
+                "orders",
+                "v2",
+                ":order_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "order_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8091ce25-c323-49fe-b3f4-62f6c42b117a",
+              "name": "Order.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "compute",
+                    "ops",
+                    "orders",
+                    "v2",
+                    ":order_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "order_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "94cb9473-5d91-4e61-9328-814dbcb80669",
+          "name": "Cancel an order",
+          "request": {
+            "name": "Cancel an order",
+            "description": {},
+            "url": {
+              "path": [
+                "compute",
+                "ops",
+                "orders",
+                "v2",
+                ":order_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "order_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ce1a31c3-ca54-4a44-a50e-90029fdc2390",
+              "name": "Order cancellation accepted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "compute",
+                    "ops",
+                    "orders",
+                    "v2",
+                    ":order_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "order_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d4d47dd2-e381-4b4c-8328-585352ee9c3c",
+          "name": "Cancel orders in bulk",
+          "request": {
+            "name": "Cancel orders in bulk",
+            "description": {},
+            "url": {
+              "path": [
+                "compute",
+                "ops",
+                "bulk",
+                "orders",
+                "v2",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"order_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1141d1ba-a9a2-4104-bc7b-4c1a4421c5a0",
+              "name": "Bulk cancel accepted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "compute",
+                    "ops",
+                    "bulk",
+                    "orders",
+                    "v2",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"order_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d232e09d-1407-46b5-aef7-b7955b8d3e50",
+          "name": "Aggregated order stats",
+          "request": {
+            "name": "Aggregated order stats",
+            "description": {},
+            "url": {
+              "path": [
+                "compute",
+                "ops",
+                "stats",
+                "orders",
+                "v2"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3880a164-0f63-4b66-8389-599587dcc3df",
+              "name": "Stats response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "compute",
+                    "ops",
+                    "stats",
+                    "orders",
+                    "v2"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.planet.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "de63eb76-031f-450d-955b-da36c03a9789",
+    "name": "Planet Insights Platform Data - Item Types Orders API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Planet Labs operates the largest commercial Earth observation\nconstellation. This specification covers the public REST surfaces of the\nPlanet Insights Platform: the Data API (catalog search and asset\nmetadata), the Orders API (bundle preparation and delivery), and the\nSubscriptions API (standing AOI feeds). All APIs sit under\napi.planet.com and authenticate with an API key over HTTP Basic\n(the API key is supplied as the username, with an empty password) or\nvia a Bearer access token where supported.\n\n\nContact Support:\n Name: API Evangelist\n Email: kin@apievangelist.com",
+      "type": "text/plain"
+    }
+  }
+}

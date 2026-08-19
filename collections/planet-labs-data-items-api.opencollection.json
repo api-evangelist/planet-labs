@@ -1,0 +1,98 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Planet Insights Platform Data - Item Types Data - Items API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Data - Items",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get item by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.planet.com/data/v1/item-types/:item_type_id/items/:item_id",
+            "params": [
+              {
+                "name": "item_type_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "item_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get item by ID"
+        },
+        {
+          "info": {
+            "name": "List assets for an item",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.planet.com/data/v1/item-types/:item_type_id/items/:item_id/assets",
+            "params": [
+              {
+                "name": "item_type_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "item_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List assets for an item"
+        },
+        {
+          "info": {
+            "name": "Cloud coverage estimate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.planet.com/data/v1/item-types/:item_type_id/items/:item_id/coverage",
+            "params": [
+              {
+                "name": "item_type_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "item_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Cloud coverage estimate"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

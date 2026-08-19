@@ -1,0 +1,40 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Planet Insights Platform Data - Item Types Data - Stats API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Data - Stats",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search stats with date histogram",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.planet.com/data/v1/stats",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Search stats with date histogram"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

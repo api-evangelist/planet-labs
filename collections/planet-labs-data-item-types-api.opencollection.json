@@ -1,0 +1,83 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Planet Insights Platform Data - Item Types API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Data - Item Types",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all asset types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.planet.com/data/v1/asset-types"
+          },
+          "docs": "List all asset types"
+        },
+        {
+          "info": {
+            "name": "Get an asset type",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.planet.com/data/v1/asset-types/:asset_type_id",
+            "params": [
+              {
+                "name": "asset_type_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get an asset type"
+        },
+        {
+          "info": {
+            "name": "List all item types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.planet.com/data/v1/item-types"
+          },
+          "docs": "List all item types"
+        },
+        {
+          "info": {
+            "name": "Get an item type",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.planet.com/data/v1/item-types/:item_type_id",
+            "params": [
+              {
+                "name": "item_type_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get an item type"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
