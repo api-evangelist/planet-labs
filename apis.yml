@@ -38,6 +38,19 @@ tags:
 - Tasking
 - Basemaps
 - Analytics
+- Subscription
+- STAC
+- GIS
+tags_raw:
+- Earth Observation
+- Satellite Imagery
+- Geospatial
+- PlanetScope
+- SkySat
+- Pelican
+- Tasking
+- Basemaps
+- Analytics
 - Subscriptions
 - STAC
 - GIS
@@ -85,6 +98,10 @@ apis:
   humanURL: https://docs.planet.com/develop/apis/orders/
   baseURL: https://api.planet.com/compute/ops
   tags:
+  - Order
+  - Delivery
+  - Processing
+  tags_raw:
   - Orders
   - Delivery
   - Processing
@@ -99,6 +116,10 @@ apis:
   humanURL: https://docs.planet.com/develop/apis/subscriptions/
   baseURL: https://api.planet.com/subscriptions/v1
   tags:
+  - Subscription
+  - Streaming
+  - Cloud Delivery
+  tags_raw:
   - Subscriptions
   - Streaming
   - Cloud Delivery
@@ -266,6 +287,8 @@ apis:
   humanURL: https://docs.planet.com/develop/apis/data/
   baseURL: https://api.planet.com/data/v1
   tags:
+  - Order
+  tags_raw:
   - Orders
   properties:
   - type: OpenAPI
@@ -276,6 +299,8 @@ apis:
   humanURL: https://docs.planet.com/develop/apis/data/
   baseURL: https://api.planet.com/data/v1
   tags:
+  - Subscription
+  tags_raw:
   - Subscriptions
   properties:
   - type: OpenAPI
