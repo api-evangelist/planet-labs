@@ -6,17 +6,16 @@
       "feed_url": "https://github.com/planetlabs",
       "title": "",
       "saved": 0,
-      "method": "none",
-      "error": "parse_failed"
+      "method": "none"
     },
     {
       "source": "https://www.planet.com/pulse/rss/",
       "feed_url": "https://www.planet.com/pulse/rss/",
       "title": "",
-      "saved": 4,
+      "saved": 0,
       "method": "feed"
     }
   ],
-  "post_count": 63,
-  "fetched": "2026-08-15T12:11:08Z"
+  "post_count": 65,
+  "fetched": "2026-08-22T20:20:02Z"
 }
