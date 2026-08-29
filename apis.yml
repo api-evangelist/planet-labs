@@ -12,6 +12,20 @@ description: 'Planet Labs operates the world''s largest commercial Earth observa
   authenticate with an API key over HTTP Basic, and are wrapped by the official Planet
   Python SDK.'
 type: Index
+deliveryModel:
+  model: open-core
+  license: Apache-2.0
+  open_source: true
+  commercial: true
+  callable_host: true
+  label: Open core · an OSS project plus a commercial hosted product
+  confidence: high
+  source:
+  - license
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: free
   onboarding: self-serve
@@ -306,6 +320,12 @@ apis:
   - type: OpenAPI
     url: openapi/planet-labs-subscriptions-api-openapi.yml
 common:
+- type: IssueTracker
+  url: https://github.com/planetlabs/planet-client-python/issues
+- type: Releases
+  url: https://github.com/planetlabs/planet-client-python/releases
+- type: ContributionGuide
+  url: https://github.com/planetlabs/planet-client-python/blob/main/CONTRIBUTING.md
 - type: License
   name: Apache-2.0
   url: https://github.com/planetlabs/planet-client-python/blob/main/LICENSE
