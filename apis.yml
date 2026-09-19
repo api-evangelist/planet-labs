@@ -181,6 +181,11 @@ apis:
   - Analytics
   - Detection
   - Change
+  - Machine-Learning
+  tags_raw:
+  - Analytics
+  - Detection
+  - Change
   - ML
   properties:
   - type: Documentation
