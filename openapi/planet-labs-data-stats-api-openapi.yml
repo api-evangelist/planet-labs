@@ -1,23 +1,9 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Planet Insights Platform Data - Item Types Data - Stats API
+  title: Planet Insights Platform Data - Stats API
   description: 'Planet Labs operates the largest commercial Earth observation
 
-    constellation. This specification covers the public REST surfaces of the
-
-    Planet Insights Platform: the Data API (catalog search and asset
-
-    metadata), the Orders API (bundle preparation and delivery), and the
-
-    Subscriptions API (standing AOI feeds). All APIs sit under
-
-    api.planet.com and authenticate with an API key over HTTP Basic
-
-    (the API key is supplied as the username, with an empty password) or
-
-    via a Bearer access token where supported.
-
-    '
+    constellation.'
   version: 1.0.0
   contact:
     name: API Evangelist
@@ -49,6 +35,8 @@ paths:
       responses:
         '200':
           description: Stats response.
+      operationId: postDataV1Stats
+      x-operation-id-source: derived
 components:
   securitySchemes:
     basicAuth:

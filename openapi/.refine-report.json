@@ -1,12 +1,7 @@
 {
   "provider": "planet-labs",
   "sources": [
-    "planet-labs-data-item-types-api-openapi.yml",
-    "planet-labs-data-items-api-openapi.yml",
-    "planet-labs-data-search-api-openapi.yml",
-    "planet-labs-data-stats-api-openapi.yml",
-    "planet-labs-orders-api-openapi.yml",
-    "planet-labs-subscriptions-api-openapi.yml"
+    "_original/planet-labs-openapi.yml"
   ],
   "outputs": [
     "planet-labs-data-item-types-api-openapi.yml",
@@ -19,6 +14,17 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "planet-labs-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "planet-labs-data-item-types-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "planet-labs-data-items-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "planet-labs-data-search-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "planet-labs-data-stats-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "planet-labs-orders-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "planet-labs-subscriptions-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

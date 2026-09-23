@@ -1,23 +1,9 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Planet Insights Platform Data - Item Types Data - Search API
+  title: Planet Insights Platform Data - Search API
   description: 'Planet Labs operates the largest commercial Earth observation
 
-    constellation. This specification covers the public REST surfaces of the
-
-    Planet Insights Platform: the Data API (catalog search and asset
-
-    metadata), the Orders API (bundle preparation and delivery), and the
-
-    Subscriptions API (standing AOI feeds). All APIs sit under
-
-    api.planet.com and authenticate with an API key over HTTP Basic
-
-    (the API key is supplied as the username, with an empty password) or
-
-    via a Bearer access token where supported.
-
-    '
+    constellation.'
   version: 1.0.0
   contact:
     name: API Evangelist
@@ -48,6 +34,8 @@ paths:
       responses:
         '200':
           description: Search results.
+      operationId: postDataV1QuickSearch
+      x-operation-id-source: derived
   /data/v1/searches:
     get:
       tags:
@@ -56,6 +44,8 @@ paths:
       responses:
         '200':
           description: Saved searches.
+      operationId: getDataV1Searches
+      x-operation-id-source: derived
     post:
       tags:
       - Data - Search
@@ -69,6 +59,8 @@ paths:
       responses:
         '201':
           description: Saved search created.
+      operationId: postDataV1Searches
+      x-operation-id-source: derived
   /data/v1/searches/{search_id}:
     parameters:
     - $ref: '#/components/parameters/SearchId'
@@ -79,6 +71,8 @@ paths:
       responses:
         '200':
           description: Saved search.
+      operationId: getDataV1SearchesBySearchId
+      x-operation-id-source: derived
     put:
       tags:
       - Data - Search
@@ -92,6 +86,8 @@ paths:
       responses:
         '200':
           description: Updated saved search.
+      operationId: putDataV1SearchesBySearchId
+      x-operation-id-source: derived
     delete:
       tags:
       - Data - Search
@@ -99,6 +95,8 @@ paths:
       responses:
         '204':
           description: Deleted.
+      operationId: deleteDataV1SearchesBySearchId
+      x-operation-id-source: derived
   /data/v1/searches/{search_id}/results:
     parameters:
     - $ref: '#/components/parameters/SearchId'
@@ -109,6 +107,8 @@ paths:
       responses:
         '200':
           description: Search results.
+      operationId: getDataV1SearchesBySearchIdResults
+      x-operation-id-source: derived
 components:
   schemas:
     SearchRequest:

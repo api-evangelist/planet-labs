@@ -1,23 +1,9 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Planet Insights Platform Data - Item Types Subscriptions API
+  title: Planet Insights Platform Subscriptions API
   description: 'Planet Labs operates the largest commercial Earth observation
 
-    constellation. This specification covers the public REST surfaces of the
-
-    Planet Insights Platform: the Data API (catalog search and asset
-
-    metadata), the Orders API (bundle preparation and delivery), and the
-
-    Subscriptions API (standing AOI feeds). All APIs sit under
-
-    api.planet.com and authenticate with an API key over HTTP Basic
-
-    (the API key is supplied as the username, with an empty password) or
-
-    via a Bearer access token where supported.
-
-    '
+    constellation.'
   version: 1.0.0
   contact:
     name: API Evangelist
@@ -42,6 +28,8 @@ paths:
       responses:
         '200':
           description: Subscription collection.
+      operationId: getSubscriptionsV1
+      x-operation-id-source: derived
     post:
       tags:
       - Subscriptions
@@ -55,6 +43,8 @@ paths:
       responses:
         '201':
           description: Subscription created.
+      operationId: postSubscriptionsV1
+      x-operation-id-source: derived
   /subscriptions/v1/bulk:
     post:
       tags:
@@ -71,6 +61,8 @@ paths:
       responses:
         '202':
           description: Bulk create accepted.
+      operationId: postSubscriptionsV1Bulk
+      x-operation-id-source: derived
   /subscriptions/v1/summary:
     get:
       tags:
@@ -79,6 +71,8 @@ paths:
       responses:
         '200':
           description: Summary.
+      operationId: getSubscriptionsV1Summary
+      x-operation-id-source: derived
   /subscriptions/v1/{subscriptionId}:
     parameters:
     - $ref: '#/components/parameters/SubscriptionId'
@@ -89,6 +83,8 @@ paths:
       responses:
         '200':
           description: Subscription.
+      operationId: getSubscriptionsV1BySubscriptionId
+      x-operation-id-source: derived
     patch:
       tags:
       - Subscriptions
@@ -103,6 +99,8 @@ paths:
       responses:
         '200':
           description: Patched.
+      operationId: patchSubscriptionsV1BySubscriptionId
+      x-operation-id-source: derived
     put:
       tags:
       - Subscriptions
@@ -116,6 +114,8 @@ paths:
       responses:
         '200':
           description: Updated.
+      operationId: putSubscriptionsV1BySubscriptionId
+      x-operation-id-source: derived
   /subscriptions/v1/{subscriptionId}/cancel:
     parameters:
     - $ref: '#/components/parameters/SubscriptionId'
@@ -126,6 +126,8 @@ paths:
       responses:
         '200':
           description: Cancelled.
+      operationId: postSubscriptionsV1BySubscriptionIdCancel
+      x-operation-id-source: derived
   /subscriptions/v1/{subscriptionId}/suspend:
     parameters:
     - $ref: '#/components/parameters/SubscriptionId'
@@ -136,6 +138,8 @@ paths:
       responses:
         '200':
           description: Suspended.
+      operationId: postSubscriptionsV1BySubscriptionIdSuspend
+      x-operation-id-source: derived
   /subscriptions/v1/{subscriptionId}/reactivate:
     parameters:
     - $ref: '#/components/parameters/SubscriptionId'
@@ -146,6 +150,8 @@ paths:
       responses:
         '200':
           description: Reactivated.
+      operationId: postSubscriptionsV1BySubscriptionIdReactivate
+      x-operation-id-source: derived
   /subscriptions/v1/{subscriptionId}/results:
     parameters:
     - $ref: '#/components/parameters/SubscriptionId'
@@ -156,6 +162,8 @@ paths:
       responses:
         '200':
           description: Results.
+      operationId: getSubscriptionsV1BySubscriptionIdResults
+      x-operation-id-source: derived
   /subscriptions/v1/{subscriptionId}/summary:
     parameters:
     - $ref: '#/components/parameters/SubscriptionId'
@@ -166,14 +174,9 @@ paths:
       responses:
         '200':
           description: Results summary.
+      operationId: getSubscriptionsV1BySubscriptionIdSummary
+      x-operation-id-source: derived
 components:
-  parameters:
-    SubscriptionId:
-      name: subscriptionId
-      in: path
-      required: true
-      schema:
-        type: string
   schemas:
     SubscriptionRequest:
       type: object
@@ -194,6 +197,13 @@ components:
         notifications:
           type: object
           additionalProperties: true
+  parameters:
+    SubscriptionId:
+      name: subscriptionId
+      in: path
+      required: true
+      schema:
+        type: string
   securitySchemes:
     basicAuth:
       type: http

@@ -1,23 +1,9 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Planet Insights Platform Data - Item Types API
   description: 'Planet Labs operates the largest commercial Earth observation
 
-    constellation. This specification covers the public REST surfaces of the
-
-    Planet Insights Platform: the Data API (catalog search and asset
-
-    metadata), the Orders API (bundle preparation and delivery), and the
-
-    Subscriptions API (standing AOI feeds). All APIs sit under
-
-    api.planet.com and authenticate with an API key over HTTP Basic
-
-    (the API key is supplied as the username, with an empty password) or
-
-    via a Bearer access token where supported.
-
-    '
+    constellation.'
   version: 1.0.0
   contact:
     name: API Evangelist
@@ -42,6 +28,8 @@ paths:
       responses:
         '200':
           description: Asset type collection.
+      operationId: getDataV1AssetTypes
+      x-operation-id-source: derived
   /data/v1/asset-types/{asset_type_id}:
     parameters:
     - $ref: '#/components/parameters/AssetTypeId'
@@ -52,6 +40,8 @@ paths:
       responses:
         '200':
           description: Asset type.
+      operationId: getDataV1AssetTypesByAssetTypeId
+      x-operation-id-source: derived
   /data/v1/item-types:
     get:
       tags:
@@ -60,6 +50,8 @@ paths:
       responses:
         '200':
           description: Item type collection.
+      operationId: getDataV1ItemTypes
+      x-operation-id-source: derived
   /data/v1/item-types/{item_type_id}:
     parameters:
     - $ref: '#/components/parameters/ItemTypeId'
@@ -70,16 +62,18 @@ paths:
       responses:
         '200':
           description: Item type.
+      operationId: getDataV1ItemTypesByItemTypeId
+      x-operation-id-source: derived
 components:
   parameters:
-    ItemTypeId:
-      name: item_type_id
+    AssetTypeId:
+      name: asset_type_id
       in: path
       required: true
       schema:
         type: string
-    AssetTypeId:
-      name: asset_type_id
+    ItemTypeId:
+      name: item_type_id
       in: path
       required: true
       schema:

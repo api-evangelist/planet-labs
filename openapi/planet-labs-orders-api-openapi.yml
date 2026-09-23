@@ -1,23 +1,9 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Planet Insights Platform Data - Item Types Orders API
+  title: Planet Insights Platform Orders API
   description: 'Planet Labs operates the largest commercial Earth observation
 
-    constellation. This specification covers the public REST surfaces of the
-
-    Planet Insights Platform: the Data API (catalog search and asset
-
-    metadata), the Orders API (bundle preparation and delivery), and the
-
-    Subscriptions API (standing AOI feeds). All APIs sit under
-
-    api.planet.com and authenticate with an API key over HTTP Basic
-
-    (the API key is supplied as the username, with an empty password) or
-
-    via a Bearer access token where supported.
-
-    '
+    constellation.'
   version: 1.0.0
   contact:
     name: API Evangelist
@@ -42,6 +28,8 @@ paths:
       responses:
         '200':
           description: Orders collection.
+      operationId: getComputeOpsOrdersV2
+      x-operation-id-source: derived
     post:
       tags:
       - Orders
@@ -55,6 +43,8 @@ paths:
       responses:
         '202':
           description: Order accepted.
+      operationId: postComputeOpsOrdersV2
+      x-operation-id-source: derived
   /compute/ops/orders/v2/{order_id}:
     parameters:
     - $ref: '#/components/parameters/OrderId'
@@ -65,6 +55,8 @@ paths:
       responses:
         '200':
           description: Order.
+      operationId: getComputeOpsOrdersV2ByOrderId
+      x-operation-id-source: derived
     put:
       tags:
       - Orders
@@ -72,6 +64,8 @@ paths:
       responses:
         '200':
           description: Order cancellation accepted.
+      operationId: putComputeOpsOrdersV2ByOrderId
+      x-operation-id-source: derived
   /compute/ops/bulk/orders/v2/cancel:
     post:
       tags:
@@ -91,6 +85,8 @@ paths:
       responses:
         '200':
           description: Bulk cancel accepted.
+      operationId: postComputeOpsBulkOrdersV2Cancel
+      x-operation-id-source: derived
   /compute/ops/stats/orders/v2:
     get:
       tags:
@@ -99,6 +95,8 @@ paths:
       responses:
         '200':
           description: Stats response.
+      operationId: getComputeOpsStatsOrdersV2
+      x-operation-id-source: derived
 components:
   schemas:
     OrderRequest:
