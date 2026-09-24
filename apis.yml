@@ -88,8 +88,6 @@ apis:
   properties:
   - type: Documentation
     url: https://docs.planet.com/develop/apis/data/
-  - url: graphql/planet-labs-graphql.md
-    type: GraphQL
 - aid: planet-labs:catalog
   name: Planet Catalog API
   description: >-
@@ -181,12 +179,13 @@ apis:
   - Analytics
   - Detection
   - Change
-  - Machine-Learning
+  - Machine Learning
   tags_raw:
   - Analytics
   - Detection
   - Change
   - ML
+  - Machine-Learning
   properties:
   - type: Documentation
     url: https://docs.planet.com/develop/apis/analytics/
