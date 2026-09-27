@@ -56,6 +56,7 @@ tags:
 - Subscription
 - STAC
 - GIS
+- Satellite
 tags_raw:
 - Earth Observation
 - Satellite Imagery
@@ -69,6 +70,7 @@ tags_raw:
 - Subscriptions
 - STAC
 - GIS
+- Satellite
 url: https://raw.githubusercontent.com/api-evangelist/planet-labs/refs/heads/main/apis.yml
 created: '2026-05-23'
 modified: '2026-05-23'

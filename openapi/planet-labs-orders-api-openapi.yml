@@ -98,6 +98,13 @@ paths:
       operationId: getComputeOpsStatsOrdersV2
       x-operation-id-source: derived
 components:
+  parameters:
+    OrderId:
+      name: order_id
+      in: path
+      required: true
+      schema:
+        type: string
   schemas:
     OrderRequest:
       type: object
@@ -129,13 +136,6 @@ components:
         hosting:
           type: object
           additionalProperties: true
-  parameters:
-    OrderId:
-      name: order_id
-      in: path
-      required: true
-      schema:
-        type: string
   securitySchemes:
     basicAuth:
       type: http
