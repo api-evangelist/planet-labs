@@ -110,6 +110,13 @@ paths:
       operationId: getDataV1SearchesBySearchIdResults
       x-operation-id-source: derived
 components:
+  parameters:
+    SearchId:
+      name: search_id
+      in: path
+      required: true
+      schema:
+        type: string
   schemas:
     SearchRequest:
       type: object
@@ -123,13 +130,6 @@ components:
         filter:
           type: object
           additionalProperties: true
-  parameters:
-    SearchId:
-      name: search_id
-      in: path
-      required: true
-      schema:
-        type: string
   securitySchemes:
     basicAuth:
       type: http
