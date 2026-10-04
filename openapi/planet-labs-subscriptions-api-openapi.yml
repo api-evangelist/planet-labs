@@ -177,6 +177,13 @@ paths:
       operationId: getSubscriptionsV1BySubscriptionIdSummary
       x-operation-id-source: derived
 components:
+  parameters:
+    SubscriptionId:
+      name: subscriptionId
+      in: path
+      required: true
+      schema:
+        type: string
   schemas:
     SubscriptionRequest:
       type: object
@@ -197,13 +204,6 @@ components:
         notifications:
           type: object
           additionalProperties: true
-  parameters:
-    SubscriptionId:
-      name: subscriptionId
-      in: path
-      required: true
-      schema:
-        type: string
   securitySchemes:
     basicAuth:
       type: http

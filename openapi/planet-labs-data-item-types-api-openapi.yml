@@ -66,14 +66,14 @@ paths:
       x-operation-id-source: derived
 components:
   parameters:
-    AssetTypeId:
-      name: asset_type_id
+    ItemTypeId:
+      name: item_type_id
       in: path
       required: true
       schema:
         type: string
-    ItemTypeId:
-      name: item_type_id
+    AssetTypeId:
+      name: asset_type_id
       in: path
       required: true
       schema:
