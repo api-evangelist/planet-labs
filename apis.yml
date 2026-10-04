@@ -57,6 +57,7 @@ tags:
 - STAC
 - GIS
 - Satellite
+- Remote Sensing
 tags_raw:
 - Earth Observation
 - Satellite Imagery
@@ -71,6 +72,7 @@ tags_raw:
 - STAC
 - GIS
 - Satellite
+- Remote Sensing
 url: https://raw.githubusercontent.com/api-evangelist/planet-labs/refs/heads/main/apis.yml
 created: '2026-05-23'
 modified: '2026-05-23'
