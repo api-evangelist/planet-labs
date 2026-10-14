@@ -1,0 +1,20 @@
+edges:
+- partner_name: Open Geospatial Consortium
+  partner: ogc
+  detected_by: sweep-geospatial.py
+  first_seen: '2026-10-14'
+  partner_match: shape-anchor
+  type: docs
+  direction: provider-built
+  channel: provider-built
+  relationship: compatible
+  shape: ogc-wmts
+  evidence_kind: own-docs
+  evidence: https://developers.planet.com/docs/basemaps/tile-services/
+  degree: declared-unqualified
+  quote: The API Tile Service and Mosaic Tile Service make it easy to visualize Planet imagery in desktop or web
+    mapping applications that support either the XYZ or the WMTS protocol. Planet tile services provide a way for
+    web developers and GIS ana
+  evidence_file: https://github.com/api-evangelist/planet-labs/blob/main/evidence/compatibility/planet-labs-ogc-1.md
+generated: '2026-10-14'
+method: searched

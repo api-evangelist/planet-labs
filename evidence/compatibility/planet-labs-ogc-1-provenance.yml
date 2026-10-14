@@ -1,0 +1,16 @@
+fetched: '2026-10-14'
+method: fetched
+source: https://developers.planet.com/docs/basemaps/tile-services/
+page: https://developers.planet.com/docs/basemaps/tile-services/
+file: planet-labs-ogc-1.md
+bytes: 7948
+sha256: 02e057f9bbddc7e079b4a52643f2adab8e5f8c5a8f3a1706d889cce3d5e73363
+anchor: ogc
+shape: ogc
+shapes_declared:
+- ogc-wmts
+classification: declares-compatibility
+quote: The API Tile Service and Mosaic Tile Service make it easy to visualize Planet imagery in desktop or web mapping
+  applications that support either the XYZ or the WMTS protocol. Planet tile services provide a way for web developers
+  and GIS analysts to interact with, and derive value from Planet imagery
+note: text extracted from the provider's own page (tags stripped), saved for evidence
