@@ -16,5 +16,81 @@ edges:
     mapping applications that support either the XYZ or the WMTS protocol. Planet tile services provide a way for
     web developers and GIS ana
   evidence_file: https://github.com/api-evangelist/planet-labs/blob/main/evidence/compatibility/planet-labs-ogc-1.md
+- partner_name: FCC Space Station Authorizations (Part 25)
+  partner: null
+  partner_match: register
+  type: contract
+  channel: regulator-register
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://www.fcc.gov/approved-space-station-list
+  category: FCC-authorised space station operator
+  contract_reference:
+    register: FCC Approved Space Station List (fcc.gov/approved-space-station-list, ssal.xlsx; IBFS/ICFS is the
+      official database)
+    standard: FCC Part 25
+    spec_file: null
+    role: fcc-space-station-licensee
+    registered_name: Planet Labs PBC
+    register_id: https://www.fcc.gov/sites/default/files/ssal.xlsx
+    matched_domain: planet.com
+    matched_by: domain
+    domain_source: 24/7 contact e-mail domain
+    authorisations:
+    - US licence
+    administrations:
+    - U.S.A.
+    space_stations:
+    - FLOCK / SKYSAT / PELICAN
+    - TANAGER
+    certified_products:
+    - product: 'FCC space station authorisation: EESS'
+      service: EESS
+      lapsed: false
+    signal_note: certified_products = one per SERVICE TYPE authorised (the licence / market-access grant is the
+      certification); satellites, call signs and orbital slots are context, never counted. The list carries current
+      authorisations only (lapsed false)
+    detected_by: sweep-space-satellite.py
+    detected: '2026-10-20'
+  detected_by: sweep-space-satellite.py
+  first_seen: '2026-10-20'
+- partner_name: STAC Index (SpatioTemporal Asset Catalogs)
+  partner: null
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://stacindex.org/catalogs/planet-labs-stac-catalog
+  category: STAC catalog register
+  contract_reference:
+    register: STAC Index (stacindex.org/api/catalogs)
+    standard: STAC
+    spec_file: null
+    role: stac-catalog-publisher
+    registered_name: Planet Labs STAC Catalog
+    register_id: https://stacindex.org/catalogs/planet-labs-stac-catalog
+    matched_domain: planet.com
+    matched_by: domain
+    domain_source: catalog URL
+    catalogs:
+    - catalog: planet-labs-stac-catalog
+      url: https://www.planet.com/data/stac/catalog.json
+      is_api: false
+      access: public
+    signal_note: 'participation only: a listed STAC catalog / STAC API; catalogs, isApi and access are context,
+      never counted'
+    detected_by: sweep-space-satellite.py
+    detected: '2026-10-20'
+  detected_by: sweep-space-satellite.py
+  first_seen: '2026-10-20'
 generated: '2026-10-14'
 method: searched
+source:
+- https://www.fcc.gov/sites/default/files/ssal.xlsx
+- https://stacindex.org/api/catalogs
+- https://registry.opendata.aws/
+checked:
+- https://registry.opendata.aws/
+- https://stacindex.org/api/catalogs
+- https://www.fcc.gov/sites/default/files/ssal.xlsx
